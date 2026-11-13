@@ -31,3 +31,6 @@ Found a world-class resource we're missing, or an Arabic/French translation you 
 *High on Intelligence's* own code & text: MIT-style — keep the notice and [LEGITIMACY.md](LEGITIMACY.md). Third-party resources keep their own licenses.
 
 *Hazem Soussi — Aethric · 2026*
+
+## Audio
+Demo video music: "Impact Moderato" — Kevin MacLeod (incompetech.com), CC BY 4.0.
