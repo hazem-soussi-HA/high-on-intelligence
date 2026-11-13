@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>High on Intelligence — The Universe Wing | Built on Claude Opus | Hazem Soussi</title>
+<meta name="description" content="HOI's universe wing: a real-time 3D starfield rendered from 36 cataloged bright stars — and HOI's expertise with the upgraded Claude Opus family: extended thinking, tool use, MCP, prompt engineering, evals, sovereign deployment.">
+<meta name="author" content="Hazem Soussi">
+<meta name="theme-color" content="#0b0b14">
+<meta property="og:title" content="High on Intelligence — The Universe Wing">
+<meta property="og:description" content="A live 3D universe built on the Claude Opus frontier. Stars from the real catalog. Zero mock.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hazem-soussi-ha.github.io/high-on-intelligence/universe.html">
+<meta property="og:image" content="https://hazem-soussi-ha.github.io/high-on-intelligence/assets/og-image.png">
+<link rel="canonical" href="https://hazem-soussi-ha.github.io/high-on-intelligence/universe.html">
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/universe.css">
+</head>
+<body>
+
+<div class="backdrop" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html" aria-label="High on Intelligence — home">
+      <svg class="brand-mark" viewBox="0 0 64 64" role="img" aria-label="High on Intelligence logo — an eye inside a circuit">
+        <defs>
+          <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#a78bfa"/><stop offset=".5" stop-color="#38bdf8"/><stop offset="1" stop-color="#fbbf24"/>
+          </linearGradient>
+        </defs>
+        <rect x="2" y="2" width="60" height="60" rx="14" fill="#12121f" stroke="url(#g2)" stroke-width="2.4"/>
+        <path d="M10 32 Q32 12 54 32 Q32 52 10 32 Z" fill="none" stroke="url(#g2)" stroke-width="2.6" stroke-linejoin="round"/>
+        <circle cx="32" cy="32" r="8.5" fill="none" stroke="url(#g2)" stroke-width="2.6"/>
+        <circle cx="32" cy="32" r="3" fill="url(#g2)"/>
+        <circle cx="8" cy="32" r="1.6" fill="#38bdf8"/><circle cx="56" cy="32" r="1.6" fill="#38bdf8"/>
+        <circle cx="32" cy="6" r="1.6" fill="#a78bfa"/><circle cx="32" cy="58" r="1.6" fill="#a78bfa"/>
+      </svg>
+      <span class="brand-text"><b>HOI</b><small>High on Intelligence · Hazem Soussi</small></span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html#library">Library</a>
+      <a href="index.html#paths">Paths</a>
+      <a href="universe.html" aria-current="page" style="color:var(--accent)">Universe</a>
+      <a href="index.html#assistant">Assistant</a>
+      <a href="index.html#collaborate">Collaborate</a>
+    </nav>
+    <div class="top-actions">
+      <a href="index.html" class="btn small ghost">← Back to portal</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ═══════════ HERO ═══════════ -->
+<section class="universe-hero" aria-labelledby="u-title">
+  <div>
+    <span class="eyebrow"><span class="pulse"></span> HOI · The Frontier Wing</span>
+    <h1 id="u-title">Built on the<br><span class="gradient-text">Claude Opus</span><br>Frontier.</h1>
+    <p class="lede">This is HOI's workshop of record: where the upgraded <strong>Claude Opus</strong> family is wielded like a power tool — deliberately, measurably, publicly. Below: a <strong>live 3D universe</strong> rendered in real time from 36 cataloged bright stars, built the way Opus taught us to build it — deep thinking first, verification always, zero mock — followed by the six disciplines we practice to earn that trust.</p>
+    <div class="chips">
+      <span class="chip">Extended Thinking</span><span class="chip">Tool Use</span><span class="chip">MCP</span><span class="chip">Prompt Contracts</span><span class="chip">Evals</span><span class="chip">Subagents</span><span class="chip">Sovereign Deploy</span>
+    </div>
+  </div>
+  <aside class="frontier-panel" aria-label="What lives on this page">
+    <h3>What's inside</h3>
+    <ul>
+      <li>A real-time three.js universe — 36 cataloged stars, J2000 coordinates</li>
+      <li>Click any star · search the catalog · focus the camera</li>
+      <li>Equatorial ring · procedural Milky Way band · deep-field 2,400 stars</li>
+      <li>Our six disciplines with Claude Opus — with real, verified links</li>
+      <li>Zero frameworks, zero build step — vendored, sovereign, offline-capable</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- ═══════════ 01 · THE LIVING UNIVERSE ═══════════ -->
+<section class="block" id="universe" aria-labelledby="universe-title">
+  <div class="section-head">
+    <span class="num">01</span>
+    <h2 id="universe-title">The Living Universe</h2>
+    <p>Real catalog. Real coordinates. Real-time render. Drag to orbit · scroll to zoom · click a star to meet it.</p>
+  </div>
+
+  <div class="universe-layout">
+    <div class="canvas-panel" aria-label="Interactive 3D starfield of the 36 brightest cataloged stars">
+      <canvas id="universeCanvas" role="application" aria-label="3D starfield. Drag to rotate, scroll to zoom, click a star for details."></canvas>
+      <div class="canvas-overlay">
+        <button id="btnAuto" class="btn small primary">Auto-rotate: ON</button>
+        <button id="btnReset" class="btn small ghost" style="background:rgba(10,10,20,.65);border-color:rgba(255,255,255,.25);color:#fff">Reset view</button>
+      </div>
+      <div class="canvas-hint">DRAG to orbit · SCROLL to zoom · CLICK a star</div>
+      <div id="webglFallback" hidden style="padding:3rem;text-align:center;color:#a8a4c4">WebGL is unavailable in this browser. The universe still exists — just open this page in Chrome, Firefox, Edge or Safari with hardware acceleration.</div>
+    </div>
+
+    <div class="universe-side">
+      <div class="star-info" aria-live="polite">
+        <p class="star-empty-note" id="siEmpty">☄ Touch any star in the field — or pick one below — and it will introduce itself.</p>
+        <div id="siBody" hidden>
+          <h3 id="siName">—</h3>
+          <p class="star-meta" id="siMeta">—</p>
+          <div class="star-stats">
+            <div class="star-stat"><b id="siMag">—</b><span>Magnitude</span></div>
+            <div class="star-stat"><b id="siDist">—</b><span>Distance</span></div>
+            <div class="star-stat"><b id="siSpec">—</b><span>Spectral</span></div>
+          </div>
+          <p class="star-fact" id="siFact">—</p>
+        </div>
+      </div>
+
+      <div class="star-list-wrap">
+        <input id="starSearch" type="search" placeholder="Search the catalog — star, constellation, spectral class…" aria-label="Search stars" autocomplete="off">
+        <div class="star-list" id="starList"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="universe-facts" aria-label="Catalog statistics">
+    <div class="ufact"><b id="statStars">36</b><span>cataloged stars</span></div>
+    <div class="ufact"><b id="statNearest">Alpha C …</b><span>nearest neighbor</span></div>
+    <div class="ufact"><b id="statBrightest">Sirius …</b><span>brightest (mag −1.46)</span></div>
+    <div class="ufact"><b id="statFurthest">Deneb …</b><span>farthest light we carry</span></div>
+  </div>
+  <p class="universe-foot-note">Positions: equatorial J2000 (RA h, Dec °) · Magnitudes &amp; distances rounded IAU/Hipparcos values — variable stars vary; approximate, for education, not navigation.</p>
+</section>
+
+<!-- ═══════════ 02 · OUR CRAFT WITH CLAUDE OPUS ═══════════ -->
+<section class="block" id="craft" aria-labelledby="craft-title">
+  <div class="section-head">
+    <span class="num">02</span>
+    <h2 id="craft-title">Our Craft with Claude Opus</h2>
+    <p>The upgraded Claude Opus family is Anthropic's deepest reasoning model. These are the six disciplines we practice daily — each with the source of truth, because we link what we claim.</p>
+  </div>
+
+  <div class="pillars">
+    <article class="pillar">
+      <span class="pillar-num">01 / 06</span>
+      <h3>Extended Thinking</h3>
+      <p>Opus's signature mode: reason internally <em>before</em> speaking. We honor it — contracts written before code, plans pressure-tested before typing. The thinking happens off-stage; the output arrives considered.</p>
+      <a href="https://docs.anthropic.com/en/docs/build-with-claude/extended-thinking" target="_blank" rel="noopener noreferrer">Anthropic — Extended Thinking docs ↗</a>
+    </article>
+    <article class="pillar">
+      <span class="pillar-num">02 / 06</span>
+      <h3>Tool Use, for Real</h3>
+      <p>A model that can act is worth ten that can only talk. Opus calls tools — fetch, verify, screenshot, render, deploy — and HOI was built that way end-to-end: every link re-verified over the network, every page rendered headlessly before it shipped.</p>
+      <a href="https://docs.anthropic.com/en/docs/build-with-claude/tool-use" target="_blank" rel="noopener noreferrer">Anthropic — Tool Use docs ↗</a>
+    </article>
+    <article class="pillar">
+      <span class="pillar-num">03 / 06</span>
+      <h3>MCP — The Protocol Layer</h3>
+      <p>The Model Context Protocol wires models into real systems: files, APIs, databases, browsers. It's how the thinking machine leaves the chat box and enters the workshop — one tool at a time, with honest permissions.</p>
+      <a href="https://modelcontextprotocol.io/introduction" target="_blank" rel="noopener noreferrer">Model Context Protocol — Introduction ↗</a>
+    </article>
+    <article class="pillar">
+      <span class="pillar-num">04 / 06</span>
+      <h3>Prompt Contracts</h3>
+      <p>Prompts are contracts, not wishes. Role, context, constraints, definition-of-done — then iterate until the output is boring in the best sense: predictably, repeatably correct.</p>
+      <a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview" target="_blank" rel="noopener noreferrer">Anthropic — Prompt Engineering ↗</a>
+    </article>
+    <article class="pillar">
+      <span class="pillar-num">05 / 06</span>
+      <h3>Evals, or It Didn't Happen</h3>
+      <p>Trust is measured, not asserted. We re-render phone and desktop viewports, re-verify all 70 catalog links, audit console errors on every deploy — and we'd rather find the failure before you do.</p>
+      <a href="https://www.anthropic.com/engineering" target="_blank" rel="noopener noreferrer">Anthropic — Engineering ↗</a>
+    </article>
+    <article class="pillar">
+      <span class="pillar-num">06 / 06</span>
+      <h3>Sovereign Deployment</h3>
+      <p>Frontier models deserve frontier rigor on your own metal: GitHub Actions security gate, stillness process, Proxmox/LXC + CDN failover — your artifacts never leave your hands. Opus thinks; your stack obeys.</p>
+      <a href="deploy/failover.md">Aethric deployment kit ↗</a>
+    </article>
+  </div>
+
+  <p class="universe-foot-note">Built by Hazem Soussi with the Claude Opus family as his pair-builder — not everything in it is Opus; some of it is coffee and stubbornness. Want this for your team? <a href="index.html#collaborate">Write your collaboration manifest →</a></p>
+</section>
+</main>
+
+<footer>
+  <p><b>High on Intelligence</b> · Hazem Soussi — The Universe Wing · sibling of the <a href="index.html">main portal</a></p>
+  <div class="foot-links">
+    <a href="index.html#library">Library</a>·
+    <a href="index.html#paths">Paths</a>·
+    <a href="universe.html">Universe</a>·
+    <a href="index.html#collaborate">Collaborate</a>
+  </div>
+  <p style="max-width:44rem;margin:0 auto">Star catalog values rounded from public IAU/Hipparcos references. Claude and Opus are trademarks of Anthropic, PBC. HOI is not affiliated with Anthropic — we admire the forge, and we link the docs.</p>
+</footer>
+
+<script src="assets/vendor/three.min.js"></script>
+<script src="js/universe-data.js"></script>
+<script src="js/universe.js"></script>
+</body>
+</html>
