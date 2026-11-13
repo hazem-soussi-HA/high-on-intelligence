@@ -1,5 +1,5 @@
 /* =====================================================================
-   POF · Hazem Soussi — The Thinking Machine
+   High on Intelligence — Hazem Soussi · The Thinking Machine
    data.js — curated, verified, real-world learning resources
    Every URL below points to a real, publicly accessible resource.
    ===================================================================== */
@@ -145,18 +145,18 @@ const QUIZ = [
 
 /* ---------------- Assistant knowledge base (FAQ) ---------------- */
 const FAQ = [
-  { q:"What is this portal?", a:"POF — the Hazem Soussi portal — is a free, curated gateway to the best learning resources of the modern age: AI, software engineering, security, mathematics, and the art of living well. No paywalls here, no fluff — just real links, real paths, real progress tracking." },
-  { q:"Who is Hazem Soussi?", a:"POF is designed and curated by Hazem Soussi, a builder fascinated by the frontier of intelligence — human and artificial. The portal is his invitation: learn deeply, act ethically, and collaborate on the thinking machine. Bring your skills; leave with a sharper mind." },
+  { q:"What is this portal?", a:"High on Intelligence — the Hazem Soussi portal — is a free, curated gateway to the best learning resources of the modern age: AI, software engineering, security, mathematics, and the art of living well. No paywalls here, no fluff — just real links, real paths, real progress tracking." },
+  { q:"Who is Hazem Soussi?", a:"High on Intelligence is designed and curated by Hazem Soussi, a builder fascinated by the frontier of intelligence — human and artificial. The portal is his invitation: learn deeply, act ethically, and collaborate on the thinking machine. Bring your skills; leave with a sharper mind." },
   { q:"What is the thinking machine?", a:"The thinking machine is the co-evolution of human judgment and machine intelligence — models that reason, retrieve and act, guided by people who understand them deeply. This portal is a workshop for that collaboration: you learn the science, the tools and the ethics, then you build." },
   { q:"Where should I start as a complete beginner?", a:"Start with the Foundations Track: Khan Academy math and 3Blue1Brown's Essence of Calculus and Linear Algebra, then CS50x. In parallel, do 15 minutes a day of walking or bodyweight movement (see WHO guideline). Consistency beats intensity." },
   { q:"How do I become an AI engineer?", a:"Follow the Thinking Machine Track: 3B1B neural networks → CS50 AI → linear algebra intuition → Google's ML Crash Course → Kaggle Learn → fast.ai → PyTorch → Karpathy's Zero-to-Hero → the Hugging Face NLP course. Then build one project and share it." },
   { q:"How do I learn cybersecurity from zero?", a:"The Guardian Track: OverTheWire Bandit → Linux Journey → picoCTF → TryHackMe (start with the free rooms). Then PortSwigger Web Security Academy for web attacks, and OWASP Top 10 to speak the industry's language." },
   { q:"How much math do I really need for AI?", a:"Enough to not be afraid: Essence of Linear Algebra + Essence of Calculus (3Blue1Brown), plus StatQuest for statistics. Then computation — Kaggle and fast.ai teach the rest by doing. Depth arrives when curiosity demands it." },
   { q:"What is free and what is paid here?", a:"Everything tagged FREE is genuinely free, forever. FREEMIUM means a strong free tier exists (TryHackMe, DeepLearning.AI). PAID items are rare and worth it — but start free; the portal itself never charges you." },
-  { q:"How do I stay motivated?", a:"Treat learning like training: small daily doses, one visible artifact per week (a repo, a notebook, a blog post), and a public streak. Mark resources done here, and watch your POF dashboard fill. Progress is the best teacher." },
+  { q:"How do I stay motivated?", a:"Treat learning like training: small daily doses, one visible artifact per week (a repo, a notebook, a blog post), and a public streak. Mark resources done here, and watch your High on Intelligence dashboard fill. Progress is the best teacher." },
   { q:"Should I learn spirituality and health too?", a:"Yes — the Sovereign Track exists for a reason. Sleep (NHS/NHLBI), movement (WHO), food (Harvard Nutrition Source), Stillness (MBSR), and wisdom (Marcus Aurelius, the Quran, the Gita, SEP). A sharp mind in a depleted body builds fragile machines." },
-  { q:"How can I collaborate on the thinking machine?", a:"Open the Collaborate section: write what you can offer and what you want to build, generate your collaboration manifest, and share it. POF wants builders — reviewers, writers, translators, tinkerers. Small doors, real work." },
-  { q:"Are these links safe and legal?", a:"Yes. POF links only to legal, reputable, mostly non-commercial educational resources. The security tracks teach offensive skills exclusively in sandboxed, legal environments (TryHackMe, picoCTF, PortSwigger labs)." },
+  { q:"How can I collaborate on the thinking machine?", a:"Open the Collaborate section: write what you can offer and what you want to build, generate your collaboration manifest, and share it. High on Intelligence wants builders — reviewers, writers, translators, tinkerers. Small doors, real work." },
+  { q:"Are these links safe and legal?", a:"Yes. High on Intelligence links only to legal, reputable, mostly non-commercial educational resources. The security tracks teach offensive skills exclusively in sandboxed, legal environments (TryHackMe, picoCTF, PortSwigger labs)." },
   { q:"Can I use this offline?", a:"The portal itself is a static site — once loaded, the library, paths, quiz, assistant, timer and breathing widget all work offline. Only clicking through to the external resources needs a connection." },
   { q:"How is my progress stored?", a:"Locally, in your browser (localStorage). Nothing leaves your machine. Use Export in the dashboard to download a backup or a clean Markdown summary of your journey." }
 ];

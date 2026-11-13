@@ -1,6 +1,6 @@
 Contact: mailto:hazem-soussi-ha@users.noreply.github.com
-Contact: https://github.com/hazem-soussi-HA/pof-thinking-machine
+Contact: https://github.com/hazem-soussi-HA/high-on-intelligence
 Expires: 2027-11-13T00:00:00.000Z
 Preferred-Languages: en, ar, fr
-Canonical: https://hazem-soussi-ha.github.io/pof-thinking-machine/.well-known/security.txt
-Policy: https://hazem-soussi-ha.github.io/pof-thinking-machine/LEGITIMACY.md
+Canonical: https://hazem-soussi-ha.github.io/high-on-intelligence/.well-known/security.txt
+Policy: https://hazem-soussi-ha.github.io/high-on-intelligence/LEGITIMACY.md

@@ -1,5 +1,5 @@
 /* =====================================================================
-   POF · Hazem Soussi — The Thinking Machine
+   High on Intelligence — Hazem Soussi · The Thinking Machine
    app.js — rendering, state (localStorage), interactions
    ===================================================================== */
 
@@ -7,7 +7,7 @@
 
 const $  = (s, c) => (c || document).querySelector(s);
 const $$ = (s, c) => [...(c || document).querySelectorAll(s)];
-const LS = { progress: "pof_progress_v1", theme: "pof_theme_v1", best: "pof_quiz_best_v1", focus: "pof_focus_v1", collab: "pof_collab_v1", propose: "pof_proposed_v1" };
+const LS = { progress: "hoi_progress_v1", theme: "hoi_theme_v1", best: "hoi_quiz_best_v1", focus: "hoi_focus_v1", collab: "hoi_collab_v1", propose: "hoi_proposed_v1" };
 
 const store = {
   get(k, d) { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch { return d; } },
@@ -167,11 +167,11 @@ function exportProgress(kind) {
   const p = getProgress();
   const lines = RESOURCES.filter(r => p[r.id]).map(r => `- [x] ${r.title} — ${r.provider} (${AREAS[r.area].label}) ${r.url}`);
   if (!lines.length) { toast("Nothing to export yet — mark a resource done first."); return; }
-  const md = `# POF — My Learning Journey (Hazem Soussi · The Thinking Machine)\n\nCompleted: ${lines.length}/${RESOURCES.length} resources · ~${doneHours()} hours invested\n\n${lines.join("\n")}\n`;
+  const md = `# High on Intelligence — My Learning Journey (Hazem Soussi · The Thinking Machine)\n\nCompleted: ${lines.length}/${RESOURCES.length} resources · ~${doneHours()} hours invested\n\n${lines.join("\n")}\n`;
   const blob = new Blob([md], { type: "text/markdown;charset=utf-8" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
-  a.download = "pof-journey.md";
+  a.download = "hoi-journey.md";
   a.click();
   URL.revokeObjectURL(a.href);
   toast("Journey exported as Markdown.");
@@ -180,7 +180,7 @@ function exportJSON() {
   const blob = new Blob([JSON.stringify({ exported: new Date().toISOString(), progress: getProgress() }, null, 2)], { type: "application/json" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
-  a.download = "pof-progress.json";
+  a.download = "hoi-progress.json";
   a.click();
   URL.revokeObjectURL(a.href);
   toast("Progress backup downloaded.");
@@ -294,7 +294,7 @@ function renderTimer() {
   const m = String(Math.floor(focus.seconds / 60)).padStart(2, "0");
   const s = String(focus.seconds % 60).padStart(2, "0");
   $("#timerDisplay").textContent = `${m}:${s}`;
-  document.title = focus.running ? `${m}:${s} · POF Focus` : "POF — Hazem Soussi · The Thinking Machine";
+  document.title = focus.running ? `${m}:${s} · High on Intelligence Focus` : "High on Intelligence — Hazem Soussi · The Thinking Machine";
   $("#timerMode").textContent = focus.mode === "focus" ? "Deep focus" : focus.mode === "short" ? "Short break" : "Long break";
   $("#focusSessions").textContent = focus.cycles;
   $("#timerToggle").textContent = focus.running ? "Pause" : "Start";
@@ -401,14 +401,14 @@ function initAssistant() {
 
 /* ============ COLLABORATE + MANIFEST ============ */
 function buildManifest(data) {
-  return `# POF — Collaboration Manifest · ${data.name}\n\n` +
-    `**Portal:** POF · Hazem Soussi — The Thinking Machine\n` +
+  return `# High on Intelligence — Collaboration Manifest · ${data.name}\n\n` +
+    `**Portal:** High on Intelligence — Hazem Soussi · The Thinking Machine\n` +
     `**What I offer:** ${data.offer}\n` +
     `**What I want to build:** ${data.build}\n` +
     `**Skills & tools:** ${data.skills}\n` +
     `**Availability:** ${data.availability}\n` +
     `**Contact:** ${data.contact}\n\n` +
-    `*Generated locally by the POF portal — I am ready to collaborate into the thinking machine.*`;
+    `*Generated locally by the High on Intelligence portal — I am ready to collaborate into the thinking machine.*`;
 }
 function initCollaborate() {
   const form = $("#collabForm");
@@ -431,7 +431,7 @@ function initCollaborate() {
     const blob = new Blob([out.textContent], { type: "text/markdown;charset=utf-8" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    a.download = "pof-collaboration-manifest.md";
+    a.download = "hoi-collaboration-manifest.md";
     a.click();
     URL.revokeObjectURL(a.href);
   });
@@ -469,11 +469,11 @@ function initPropose() {
   $("#exportProposed").addEventListener("click", () => {
     const items = store.get(LS.propose, []);
     if (!items.length) { toast("No proposed resources yet."); return; }
-    const md = "# POF — Proposed Resources\n\n" + items.map(p => `- [${p.title}](${p.url})`).join("\n") + "\n";
+    const md = "# High on Intelligence — Proposed Resources\n\n" + items.map(p => `- [${p.title}](${p.url})`).join("\n") + "\n";
     const blob = new Blob([md], { type: "text/markdown;charset=utf-8" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    a.download = "pof-proposed-resources.md";
+    a.download = "hoi-proposed-resources.md";
     a.click();
     URL.revokeObjectURL(a.href);
   });

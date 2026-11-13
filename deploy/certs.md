@@ -10,11 +10,11 @@ Browsers mark self-signed certs as errors — users see "Not Secure", and "legit
 ## A. Let's Encrypt on the LXC (public) — one command
 ```bash
 apt install certbot python3-certbot-nginx
-certbot --nginx -d pof.hazem.example.com
+certbot --nginx -d hoi.hazem.example.com
 ```
 Caddy variant (manages renewal itself, zero cron):
 ```
-pof.hazem.example.com { root * /var/www/pof.hazem; file_server; encode zstd gzip; }
+hoi.hazem.example.com { root * /var/www/hoi.hazem; file_server; encode zstd gzip; }
 ```
 
 ## B. Aethric private CA (LAN / Proxmox only)
@@ -26,10 +26,10 @@ openssl genrsa -out aethric-root-ca.key 4096
 openssl req -x509 -new -nodes -key aethric-root-ca.key -sha256 -days 3650 \
   -subj "/C=TN/O=Aethric/OU=Private CA/CN=Aethric Root CA" -out aethric-root-ca.crt
 # Per-service cert (LAN)
-openssl genrsa -out pof-lan.key 2048
-openssl req -new -key pof-lan.key -subj "/C=TN/O=Aethric/CN=pof.lan" -out pof-lan.csr
-openssl x509 -req -in pof-lan.csr -CA aethric-root-ca.crt -CAkey aethric-root-ca.key \
-  -CAcreateserial -days 825 -sha256 -extensions v3 -extfile <(printf "[v3]\nsubjectAltName=DNS:pof.lan,DNS:pof.aethric.lan") -out pof-lan.crt
+openssl genrsa -out hoi-lan.key 2048
+openssl req -new -key hoi-lan.key -subj "/C=TN/O=Aethric/CN=pof.lan" -out hoi-lan.csr
+openssl x509 -req -in hoi-lan.csr -CA aethric-root-ca.crt -CAkey aethric-root-ca.key \
+  -CAcreateserial -days 825 -sha256 -extensions v3 -extfile <(printf "[v3]\nsubjectAltName=DNS:pof.lan,DNS:pof.aethric.lan") -out hoi-lan.crt
 ```
 Import `aethric-root-ca.crt` into your LAN devices/browsers ("Trusted Root CAs"). Never import a CA key that will ever travel to the internet.
 

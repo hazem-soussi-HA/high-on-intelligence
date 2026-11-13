@@ -1,4 +1,4 @@
-# Security Policy — POF · Hazem Soussi
+# Security Policy — High on Intelligence · Hazem Soussi
 
 ## Reporting a vulnerability
 1. **Do not** open a public issue for security problems.

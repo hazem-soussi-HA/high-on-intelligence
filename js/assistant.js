@@ -1,5 +1,5 @@
 /* =====================================================================
-   POF Assistant — "The Thinking Machine" (on-device)
+   High on Intelligence Assistant — "The Thinking Machine" (on-device)
    TF-IDF + cosine similarity over the resource catalogue and FAQ.
    No API keys, no network, no tracking — runs entirely in your browser.
    ===================================================================== */
@@ -111,7 +111,7 @@ function assistantAnswer(query) {
   const res = results.filter(r => r.doc.kind === "resource").slice(0, 4);
   if (res.length) {
     return {
-      text:"Here is what the POF index surfaced for that. Click any card to open it — and mark it done when you finish so your dashboard fills up:",
+      text:"Here is what the High on Intelligence index surfaced for that. Click any card to open it — and mark it done when you finish so your dashboard fills up:",
       picks: res.map(r => r.doc.ref.id)
     };
   }

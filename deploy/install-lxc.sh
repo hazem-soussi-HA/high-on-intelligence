@@ -2,7 +2,7 @@
 # Run INSIDE a fresh Debian 12 LXC (unprivileged, 512MB+ RAM, 2GB disk, network: static LAN IP or DHCP reservation)
 
 set -euo pipefail
-SITE_DIR=/var/www/pof.hazem
+SITE_DIR=/var/www/hoi.hazem
 
 apt-get update
 apt-get install -y curl gnupg2 lsb-release ca-certificates git
@@ -15,14 +15,14 @@ apt-get update && apt-get install -y caddy openssl
 # --- Site files ---
 mkdir -p "$SITE_DIR"
 if [ ! -d "$SITE_DIR/.git" ]; then
-  git clone https://github.com/hazem-soussi-HA/pof-thinking-machine.git "$SITE_DIR"
+  git clone https://github.com/hazem-soussi-HA/high-on-intelligence.git "$SITE_DIR"
 fi
 
 # --- Caddy config (public) ---
 # Public hostname -> automatic public cert. Internal -> use local CA, see certs.md
 cat > /etc/caddy/Caddyfile <<'EOF'
-pof.hazem.example.com {
-    root * /var/www/pof.hazem
+hoi.hazem.example.com {
+    root * /var/www/hoi.hazem
     encode zstd gzip
     file_server
     header {
@@ -34,8 +34,8 @@ pof.hazem.example.com {
     }
 }
 EOF
-# Replace pof.hazem.example.com with YOUR domain before reloading:
-#   sed -i 's/pof.hazem.example.com/YOURDOMAIN/g' /etc/caddy/Caddyfile
+# Replace hoi.hazem.example.com with YOUR domain before reloading:
+#   sed -i 's/hoi.hazem.example.com/YOURDOMAIN/g' /etc/caddy/Caddyfile
 
 systemctl enable --now caddy
 systemctl reload caddy

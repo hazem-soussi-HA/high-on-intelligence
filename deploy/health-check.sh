@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Aethric — outside-in health check. Run from anywhere (cron/CI/other node).
 set -uo pipefail
-URL="${1:-https://hazem-soussi-ha.github.io/pof-thinking-machine/}"
+URL="${1:-https://hazem-soussi-ha.github.io/high-on-intelligence/}"
 CODE=$(curl -s -o /dev/null -w "%{http_code}" --max-time 20 "$URL")
 if [ "$CODE" = "200" ]; then
   echo "$(date -u +%FT%TZ) UP   $CODE $URL"

@@ -1,8 +1,8 @@
-# POF — humans.txt
+# High on Intelligence — humans.txt
 # The humans behind the machine
 
-Team: Hazem Soussi — POF · Aethric
+Team: Hazem Soussi — High on Intelligence · Aethric
 Role: Founder, curator, builder
-Site: POF — The Thinking Machine
+Site: High on Intelligence — The Thinking Machine
 What we believe: learn deeply · act ethically · collaborate into the thinking machine
 Policy: LEGITIMACY.md

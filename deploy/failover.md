@@ -1,7 +1,7 @@
 # Aethric — Staying up "somewhere, anywhere" (architecture)
 
 ## Current live state (2026-11-13)
-- **Origin A (live): GitHub Pages** → https://hazem-soussi-ha.github.io/pof-thinking-machine/
+- **Origin A (live): GitHub Pages** → https://hazem-soussi-ha.github.io/high-on-intelligence/
   Global CDN, TLS trusted, auto from this repo. Push to main → redeploys in ~1 min.
 - **Origin B (LAN): this machine 192.168.1.4:8098** (python http.server) → replace with the Caddy LXC when Proxmox is ready.
 - **Origin C (Proxmox LXC): to provision** → see install-lxc.sh.
@@ -30,7 +30,7 @@
 ## Synchronization model (simple)
 - GitHub repo = single source of truth.
 - LXC pulls on a cron (every 5 min) or on webhook:
-  `*/5 * * * * cd /var/www/pof.hazem && git pull --ff-only -q && systemctl reload caddy`
+  `*/5 * * * * cd /var/www/hoi.hazem && git pull --ff-only -q && systemctl reload caddy`
 - Or GitHub Actions workflow that SSHes into the LXC on push (after you delegate a key).
 
 ## What only you can provide (nothing here fakes it)
