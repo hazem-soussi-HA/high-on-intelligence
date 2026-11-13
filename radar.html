@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skills Radar — Where Are You Sharp? | High on Intelligence</title>
+<meta name="description" content="Rate yourself on 20 honest statements across AI, Software, Security, Data/Math and Life. A living radar of your shape as a builder. Stored on your device only.">
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .radar-layout { display:grid; grid-template-columns: 460px 1fr; gap:1.5rem; align-items:start; }
+  .radar-canvas-wrap { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:1.2rem; display:flex; flex-direction:column; align-items:center; box-shadow:var(--shadow); position:sticky; top:88px; }
+  #radarCanvas { width:100%; height:auto; }
+  .radar-verdict { font-size:.88rem; color:var(--text-dim); text-align:center; margin:.6rem 0 .8rem; min-height:3em; }
+  .mentor-line { font-family:var(--font-mono); font-size:.66rem; color:var(--text-dim); letter-spacing:.06em; }
+  .radar-domain { border:1px solid var(--line); border-radius:var(--radius); background:var(--surface); padding:.9rem 1rem 1.1rem; margin-bottom:.9rem; }
+  .radar-domain legend { font-family:var(--font-head); font-size:1.05rem; padding:0 .5rem; color:var(--dom); }
+  .radar-row { display:grid; grid-template-columns: 1fr 150px 36px; gap:.7rem; align-items:center; padding:.35rem 0; border-bottom:1px dashed var(--line); }
+  .radar-row:last-child { border-bottom:none; }
+  .radar-q { font-size:.84rem; }
+  .radar-row input[type=range] { accent-color:var(--accent); }
+  .radar-row output { font-family:var(--font-mono); font-size:.75rem; color:var(--text-dim); text-align:right; }
+  @media (max-width: 980px) { .radar-layout { grid-template-columns:1fr; } .radar-canvas-wrap { position:static; } .radar-row { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="backdrop" aria-hidden="true"></div>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html" aria-label="High on Intelligence — home">
+      <svg class="brand-mark" viewBox="0 0 64 64" role="img" aria-label="High on Intelligence logo"><defs><linearGradient id="g5" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a78bfa"/><stop offset=".5" stop-color="#38bdf8"/><stop offset="1" stop-color="#fbbf24"/></linearGradient></defs><rect x="2" y="2" width="60" height="60" rx="14" fill="#12121f" stroke="url(#g5)" stroke-width="2.4"/><path d="M10 32 Q32 12 54 32 Q32 52 10 32 Z" fill="none" stroke="url(#g5)" stroke-width="2.6" stroke-linejoin="round"/><circle cx="32" cy="32" r="8.5" fill="none" stroke="url(#g5)" stroke-width="2.6"/><circle cx="32" cy="32" r="3" fill="url(#g5)"/></svg>
+      <span class="brand-text"><b>HOI</b><small>High on Intelligence · Hazem Soussi</small></span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html#paths">Paths</a>
+      <a href="dispatch.html">Dispatch</a>
+      <a href="status.html">Status</a>
+      <a href="universe.html">Universe</a>
+    </nav>
+    <div class="top-actions"><a href="index.html" class="btn small ghost">← Portal</a></div>
+  </div>
+</header>
+
+<main>
+<section class="hero" style="grid-template-columns:1fr;padding-top:7rem;padding-bottom:1rem">
+  <div>
+    <span class="eyebrow"><span class="pulse"></span> Skills Radar · Stored on your device only</span>
+    <h1>Where are you<br><span class="gradient-text">sharp?</span></h1>
+    <p class="lede">Twenty honest statements, five domains. Rate 1–5 — zero if it's not you yet. Your radar appears, stored locally, never uploaded. Weakness is a direction, not a verdict.</p>
+  </div>
+</section>
+
+<section class="block" aria-label="Skills assessment">
+  <div class="section-head">
+    <span class="num">01</span><h2>Your Shape</h2>
+    <p>Five axes: AI · Software · Security · Data · Life. Balance or spikiness — both are information.</p>
+  </div>
+  <div class="radar-layout">
+    <div class="radar-canvas-wrap">
+      <canvas id="radarCanvas" width="440" height="440" role="img" aria-label="Radar chart of five skill domains"></canvas>
+      <p class="radar-verdict" id="radarVerdict"></p>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center">
+        <button id="radarExport" class="btn small primary">⬇ Export my radar (.md)</button>
+        <button id="radarReset" class="btn small ghost">Reset answers</button>
+      </div>
+      <p class="mentor-line" style="margin-top:.8rem">PAIRS WELL WITH THE <a href="index.html#paths" style="color:var(--accent-2)">FIVE HOI TRACKS</a> — FEED YOUR WEAKEST AXIS</p>
+    </div>
+    <div id="radarQuestions"></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <p><b>Skills Radar</b> · part of <a href="index.html">High on Intelligence</a> · <span id="year"></span></p>
+</footer>
+
+<script src="js/radar.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

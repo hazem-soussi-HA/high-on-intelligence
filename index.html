@@ -26,6 +26,7 @@
 {"@context":"https://schema.org","@type":"WebSite","name":"High on Intelligence","alternateName":"HOI — The Thinking Machine","url":"https://hazem-soussi-ha.github.io/high-on-intelligence/","description":"Technologies, information and data of the modern age — AI, machine learning, software, security — with the spiritual way made explicit: mind, body and soul.","author":{"@type":"Person","name":"Hazem Soussi"},"creator":{"@type":"Person","name":"Hazem Soussi"},"inLanguage":"en"}
 </script>
 <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<link rel="alternate" type="application/rss+xml" title="The HOI Dispatch" href="feed.xml">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -52,15 +53,20 @@
       <span class="brand-text"><b>HOI</b><small>High on Intelligence · Hazem Soussi</small></span>
     </a>
     <nav class="site-nav" aria-label="Primary">
-      <a href="#library">Library</a>
-      <a href="#paths">Paths</a>
-      <a href="universe.html">Universe</a>
-      <a href="#assistant">Assistant</a>
-      <a href="#quiz">Quiz</a>
-      <a href="#focus">Focus</a>
-      <a href="#collaborate">Collaborate</a>
+      <a href="#library" data-i18n="nav-library">Library</a>
+      <a href="#paths" data-i18n="nav-paths">Paths</a>
+      <a href="universe.html" data-i18n="nav-universe">Universe</a>
+      <a href="#assistant" data-i18n="nav-assistant">Assistant</a>
+      <a href="#quiz" data-i18n="nav-quiz">Quiz</a>
+      <a href="#focus" data-i18n="nav-focus">Focus</a>
+      <a href="#collaborate" data-i18n="nav-collaborate">Collaborate</a>
     </nav>
     <div class="top-actions">
+      <div class="lang-switch" role="group" aria-label="Language / Langue / اللغة">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="ar">AR</button>
+      </div>
       <span class="kbd-hint">Ctrl K</span>
       <button id="themeToggle" class="icon-btn" aria-label="Toggle dark / light theme">
         <span class="icon-sun">☀</span><span class="icon-moon" style="display:none">☾</span>
@@ -74,24 +80,24 @@
 <main id="top">
 <section class="hero" aria-labelledby="hero-title">
   <div>
-    <span class="eyebrow"><span class="pulse"></span> High on Intelligence · Tech with Soul · Est. Hazem Soussi</span>
+    <span class="eyebrow"><span class="pulse"></span> <span data-i18n="eyebrow">High on Intelligence · Tech with Soul · Est. Hazem Soussi</span></span>
     <h1 id="hero-title">High on<br><span class="gradient-text">Intelligence</span><span class="gradient-text" style="font-size:.38em;letter-spacing:.02em;display:block;margin-top:.35rem">Technologies · Info · Data · Soul</span></h1>
-    <p class="lede">Hazem Soussi's free, curated gateway into the powers reshaping the world — <strong>technologies, information and data</strong>: AI &amp; machine learning, software &amp; web, security, mathematics. And the spiritual way is not a footnote here — <strong>mind, body and soul</strong>, made explicit. No paywalls. No fluff. A place to <strong>collaborate into the thinking machine</strong>.</p>
+    <p class="lede" data-i18n="lede">Hazem Soussi's free, curated gateway into the powers reshaping the world — <strong>technologies, information and data</strong>: AI &amp; machine learning, software &amp; web, security, mathematics. And the spiritual way is not a footnote here — <strong>mind, body and soul</strong>, made explicit. No paywalls. No fluff. A place to <strong>collaborate into the thinking machine</strong>.</p>
     <div class="cta-row">
-      <a href="#library" class="btn primary">Open the Library →</a>
-      <a href="#assistant" class="btn gold">Ask the Thinking Machine</a>
-      <a href="#collaborate" class="btn ghost">Join the Collaboration</a>
+      <a href="#library" class="btn primary" data-i18n="cta-library">Open the Library →</a>
+      <a href="#assistant" class="btn gold" data-i18n="cta-assistant">Ask the Thinking Machine</a>
+      <a href="#collaborate" class="btn ghost" data-i18n="cta-collaborate">Join the Collaboration</a>
     </div>
     <div class="hero-stats" aria-label="Portal statistics">
-      <div class="hstat"><b id="statTotal">0</b><span>resources</span></div>
-      <div class="hstat"><b id="statDone">0</b><span>completed</span></div>
-      <div class="hstat"><b id="statHours">0h</b><span>invested</span></div>
+      <div class="hstat"><b id="statTotal">0</b><span data-i18n="stat-total">resources</span></div>
+      <div class="hstat"><b id="statDone">0</b><span data-i18n="stat-done">completed</span></div>
+      <div class="hstat"><b id="statHours">0h</b><span data-i18n="stat-hours">invested</span></div>
     </div>
   </div>
 
   <aside class="hero-panel" aria-label="Your mastery dashboard">
-    <h2>Your Mastery — Live</h2>
-    <div class="mastery-pct"><span id="heroPct">0%</span> <small>completed</small></div>
+    <h2 data-i18n="mastery-title">Your Mastery — Live</h2>
+    <div class="mastery-pct"><span id="heroPct">0%</span> <small data-i18n="mastery-pct">completed</small></div>
     <div class="progress" style="margin:.6rem 0 1rem"><div class="progress-fill" id="heroBar" style="width:0%"></div></div>
     <div id="areaBreakdown" aria-label="Progress per domain"></div>
     <div class="panel-foot">
@@ -106,8 +112,8 @@
 <section class="block" id="library" aria-labelledby="lib-title">
   <div class="section-head">
     <span class="num">01</span>
-    <h2 id="lib-title">The Library</h2>
-    <p>Every link below is a real, verified, publicly accessible resource. Filter by domain, level, cost or format — and mark what you finish.</p>
+    <h2 id="lib-title" data-i18n="h2-library">The Library</h2>
+    <p data-i18n="p-library">Every link below is a real, verified, publicly accessible resource. Filter by domain, level, cost or format — and mark what you finish.</p>
   </div>
 
   <div class="controls" role="search">
@@ -163,8 +169,8 @@
 <section class="block" id="paths" aria-labelledby="paths-title">
   <div class="section-head">
     <span class="num">02</span>
-    <h2 id="paths-title">Curated Paths</h2>
-    <p>Five ordered journeys through the library — tick each step, watch each bar fill, feel the momentum compound.</p>
+    <h2 id="paths-title" data-i18n="h2-paths">Curated Paths</h2>
+    <p data-i18n="p-paths">Five ordered journeys through the library — tick each step, watch each bar fill, feel the momentum compound.</p>
   </div>
   <div class="paths-grid" id="pathsGrid"></div>
 </section>
@@ -173,8 +179,8 @@
 <section class="block" id="assistant" aria-labelledby="assistant-title">
   <div class="section-head">
     <span class="num">03</span>
-    <h2 id="assistant-title">The Thinking Machine — On-Device Assistant</h2>
-    <p>A real retrieval engine (TF-IDF over the library + High on Intelligence knowledge base). No cloud, no keys, no tracking. It thinks with you, locally.</p>
+    <h2 id="assistant-title" data-i18n="h2-assistant">The Thinking Machine — On-Device Assistant</h2>
+    <p data-i18n="p-assistant">A real retrieval engine (TF-IDF over the library + High on Intelligence knowledge base). No cloud, no keys, no tracking. It thinks with you, locally.</p>
   </div>
   <div class="assistant-shell">
     <div class="assistant-side">
@@ -207,8 +213,8 @@
 <section class="block" id="quiz" aria-labelledby="quiz-title">
   <div class="section-head">
     <span class="num">04</span>
-    <h2 id="quiz-title">Test Your Signal</h2>
-    <p>Twelve questions across the five domains. Instant feedback. Your best score is remembered on this device.</p>
+    <h2 id="quiz-title" data-i18n="h2-quiz">Test Your Signal</h2>
+    <p data-i18n="p-quiz">Twelve questions across the five domains. Instant feedback. Your best score is remembered on this device.</p>
   </div>
   <div class="quiz-shell" id="quizBox"></div>
 </section>
@@ -217,8 +223,8 @@
 <section class="block" id="focus" aria-labelledby="focus-title">
   <div class="section-head">
     <span class="num">05</span>
-    <h2 id="focus-title">Acts for Good Health</h2>
-    <p>A sharp mind in a depleted body builds fragile machines. Deep-work timer + box breathing — free, offline, yours.</p>
+    <h2 id="focus-title" data-i18n="h2-focus">Acts for Good Health</h2>
+    <p data-i18n="p-focus">A sharp mind in a depleted body builds fragile machines. Deep-work timer + box breathing — free, offline, yours.</p>
   </div>
   <div class="focus-grid">
     <div class="focus-panel">
@@ -250,7 +256,7 @@
 <section class="block" id="wisdom" aria-labelledby="wisdom-title">
   <div class="section-head">
     <span class="num">06</span>
-    <h2 id="wisdom-title">Words That Built the Modern Age</h2>
+    <h2 id="wisdom-title" data-i18n="h2-wisdom">Words That Built the Modern Age</h2>
   </div>
   <div class="quote-shell">
     <blockquote class="quote-text" id="quoteText"></blockquote>
@@ -266,8 +272,8 @@
 <section class="block" id="collaborate" aria-labelledby="collab-title">
   <div class="section-head">
     <span class="num">07</span>
-    <h2 id="collab-title">Collaborate Into the Thinking Machine</h2>
-    <p>High on Intelligence is not a monument — it is an invitation. Write your manifest below; it is saved on your device and ready to send.</p>
+    <h2 id="collab-title" data-i18n="h2-collaborate">Collaborate Into the Thinking Machine</h2>
+    <p data-i18n="p-collaborate">High on Intelligence is not a monument — it is an invitation. Write your manifest below; it is saved on your device and ready to send.</p>
   </div>
   <div class="collab-grid">
     <form class="form-panel" id="collabForm">
@@ -318,7 +324,7 @@
 <!-- ═══════════ MANIFESTO ═══════════ -->
 <section class="block" aria-labelledby="manifesto-title">
   <p class="manifesto">
-    <span class="eyebrow"><span class="pulse"></span> The High on Intelligence Manifesto</span>
+    <span class="eyebrow"><span class="pulse"></span> <span data-i18n="manifesto-eyebrow">The High on Intelligence Manifesto</span></span>
     <p id="manifesto-title">We do not consume technology — <em>we converse with it.</em><br>We do not chase novelty — <em>we chase depth.</em><br>We build machines that think, so that humans may think longer, kinder, and truer.<br>We are high on intelligence — <em>and Intelligence is not only artificial. It is also divine.</em><br>Mind, body and soul — the thinking machine is not the future. <em>It is the practice.</em></p>
     <p class="sig">— Hazem Soussi · High on Intelligence</p>
   </p>
@@ -331,7 +337,7 @@
   <div class="foot-links">
     <a href="#library">Library</a>·
     <a href="#paths">Paths</a>·
-    <a href="universe.html">Universe</a>·
+    <a href="universe.html">Universe</a>·<a href="dispatch.html">Dispatch</a>·<a href="status.html">Status</a>·<a href="radar.html">Skills Radar</a>·
     <a href="#assistant">Assistant</a>·
     <a href="#collaborate">Collaborate</a>
   </div>
@@ -348,6 +354,7 @@
   </div>
 </div>
 
+<script src="js/i18n.js"></script>
 <script src="js/data.js"></script>
 <script src="js/assistant.js"></script>
 <script src="js/app.js"></script>

@@ -407,3 +407,12 @@ footer .foot-links { display: flex; gap: 1rem; justify-content: center; margin: 
   .topbar, .cta-row, .random-bar, .controls, .assistant-shell, .toast, .palette, .focus-grid { display: none !important; }
   body { background: #fff; color: #000; }
 }
+
+/* ---------- language switcher + RTL ---------- */
+.lang-switch { display:flex; gap:0; border:1px solid var(--line); border-radius:9px; overflow:hidden; }
+.lang-btn { background:transparent; border:none; color:var(--text-dim); font-family:var(--font-mono); font-size:.66rem; padding:.38rem .55rem; letter-spacing:.06em; }
+.lang-btn:hover { color:var(--accent); }
+.lang-btn.active { background:var(--accent); color:#fff; }
+[dir="rtl"] .site-nav { margin-left:0; margin-right:auto; }
+[dir="rtl"] .brand-text { text-align:right; }
+[dir="rtl"] .hero h1, [dir="rtl"] .lede, [dir="rtl"] .section-head, [dir="rtl"] .manifesto { direction: rtl; }

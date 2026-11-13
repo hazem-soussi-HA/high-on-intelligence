@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aethric Status — Somewhere, Anywhere, Always | High on Intelligence</title>
+<meta name="description" content="Live health of the High on Intelligence origins — GitHub Pages CDN, the Aethric LAN mirror, and the pending Proxmox LXC. Real browser-side checks, stored on your device. No trackers, no lies.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .status-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(320px,1fr)); gap:1.25rem; }
+  .origin-card { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:1.4rem; box-shadow:var(--shadow); }
+  .origin-head { display:flex; align-items:center; gap:.7rem; margin-bottom:.4rem; }
+  .dot { width:16px; height:16px; border-radius:50%; background:#6b7280; box-shadow:0 0 10px rgba(160,160,160,.4); transition:all .3s; }
+  .dot.up { background:var(--ok); box-shadow:0 0 14px rgba(52,211,153,.6); }
+  .dot.down { background:var(--bad); box-shadow:0 0 14px rgba(248,113,113,.6); }
+  .origin-card h3 { font-family:var(--font-head); font-size:1.1rem; }
+  .origin-url { font-family:var(--font-mono); font-size:.66rem; color:var(--text-dim); word-break:break-all; }
+  .origin-state { font-family:var(--font-mono); font-size:.8rem; margin:.5rem 0 .2rem; letter-spacing:.08em; text-transform:uppercase; }
+  .state-up { color:var(--ok); } .state-down { color:var(--bad); } .state-checking { color:var(--text-dim); } .state-pending { color:var(--gold); }
+  .latency { font-size:.8rem; color:var(--text-dim); }
+  .history-grid { display:flex; gap:3px; flex-wrap:wrap; margin:.6rem 0 .3rem; }
+  .tick { width:12px; height:20px; border-radius:3px; background:var(--surface-2); border:1px solid var(--line); }
+  .tick.up { background:var(--ok); } .tick.down { background:var(--bad); } .tick.lan-ok { background:#38bdf8; }
+  .uptime-line { font-family:var(--font-mono); font-size:.72rem; color:var(--text-dim); }
+  .note-box { background:var(--surface-2); border:1px dashed var(--line); border-radius:12px; padding:.9rem 1rem; font-size:.8rem; color:var(--text-dim); margin-top:.9rem; }
+</style>
+</head>
+<body>
+<div class="backdrop" aria-hidden="true"></div>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html" aria-label="High on Intelligence — home">
+      <svg class="brand-mark" viewBox="0 0 64 64" role="img" aria-label="High on Intelligence logo">
+        <defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a78bfa"/><stop offset=".5" stop-color="#38bdf8"/><stop offset="1" stop-color="#fbbf24"/></linearGradient></defs>
+        <rect x="2" y="2" width="60" height="60" rx="14" fill="#12121f" stroke="url(#g3)" stroke-width="2.4"/>
+        <path d="M10 32 Q32 12 54 32 Q32 52 10 32 Z" fill="none" stroke="url(#g3)" stroke-width="2.6" stroke-linejoin="round"/>
+        <circle cx="32" cy="32" r="8.5" fill="none" stroke="url(#g3)" stroke-width="2.6"/><circle cx="32" cy="32" r="3" fill="url(#g3)"/>
+      </svg>
+      <span class="brand-text"><b>HOI</b><small>High on Intelligence · Hazem Soussi</small></span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html#library">Library</a>
+      <a href="universe.html">Universe</a>
+      <a href="dispatch.html">Dispatch</a>
+      <a href="radar.html">Skills Radar</a>
+      <a href="index.html#collaborate">Collaborate</a>
+    </nav>
+    <div class="top-actions"><a href="index.html" class="btn small ghost">← Portal</a></div>
+  </div>
+</header>
+
+<main>
+<section class="hero" style="grid-template-columns:1fr;padding-top:7rem;padding-bottom:1rem">
+  <div>
+    <span class="eyebrow"><span class="pulse"></span> Aethric Sovereign Infrastructure</span>
+    <h1>Somewhere.<br><span class="gradient-text">Anywhere. Always.</span></h1>
+    <p class="lede">A live, browser-side view of the High on Intelligence origins. If your infrastructure goes down, the service stays up somewhere else — this page exists to prove it, and to scream when it doesn't.</p>
+  </div>
+</section>
+
+<section class="block" aria-label="Origin health">
+  <div class="section-head">
+    <span class="num">01</span><h2>Origin Health</h2>
+    <p>Checks run from <em>your browser</em> every 30 seconds. Still UTC-honest: this measures your view of the world, not a global SOC.</p>
+  </div>
+  <div class="status-grid" id="originGrid"></div>
+  <div class="note-box">
+    <strong>How to read this honestly:</strong> "GitHub Pages CDN" is global and public. The "Aethric LAN" card answers true from inside your network, but public browsers see it through GitHub's house rules (mixed content over HTTPS), so it may read DOWN from the internet — that's expected, not a failure. The Proxmox LXC origin stays honestly <strong>PENDING</strong> until provisioned — we don't ship green lights we didn't earn. History is stored on this device only; nothing is reported anywhere. See <a href="https://github.com/hazem-soussi-HA/high-on-intelligence/blob/main/deploy/failover.md">failover.md</a> and <a href="LEGITIMACY.md">LEGITIMACY.md</a>.
+  </div>
+</section>
+</main>
+
+<footer>
+  <p><b>Aethric Status</b> · part of <a href="index.html">High on Intelligence</a> · <span id="year"></span></p>
+</footer>
+
+<script src="js/status.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
