@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://hazem-soussi-ha.github.io/pof-thinking-machine/sitemap.xml

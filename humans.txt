@@ -1,0 +1,8 @@
+# POF — humans.txt
+# The humans behind the machine
+
+Team: Hazem Soussi — POF · Aethric
+Role: Founder, curator, builder
+Site: POF — The Thinking Machine
+What we believe: learn deeply · act ethically · collaborate into the thinking machine
+Policy: LEGITIMACY.md

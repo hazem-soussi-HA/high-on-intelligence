@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POF · Hazem Soussi — The Thinking Machine | Learn the Technology of the Modern Age</title>
+<meta name="description" content="POF is Hazem Soussi's free, curated portal to the best learning resources of the modern age: AI, machine learning, software engineering, security, data & mathematics — plus mind, body, health and spirit. Real links, real learning paths, real progress tracking, and on-device guidance into the thinking machine.">
+<meta name="keywords" content="POF, Hazem Soussi, learn AI, machine learning, deep learning, LLM, thinking machine, free courses, CS50, fast.ai, cybersecurity, mathematics, self-improvement">
+<meta name="author" content="Hazem Soussi">
+<meta name="theme-color" content="#0b0b14">
+<meta property="og:title" content="POF · Hazem Soussi — The Thinking Machine">
+<meta property="og:description" content="Useful resources to learn the technology of the modern age — AI, security, software, math, and the art of living well.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="backdrop" aria-hidden="true"></div>
+
+<!-- ═══════════ TOP BAR ═══════════ -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#top" aria-label="POF — home">
+      <svg class="brand-mark" viewBox="0 0 64 64" role="img" aria-label="POF logo — an eye inside a circuit">
+        <defs>
+          <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#a78bfa"/><stop offset=".5" stop-color="#38bdf8"/><stop offset="1" stop-color="#fbbf24"/>
+          </linearGradient>
+        </defs>
+        <rect x="2" y="2" width="60" height="60" rx="14" fill="#12121f" stroke="url(#g)" stroke-width="2.4"/>
+        <path d="M10 32 Q32 12 54 32 Q32 52 10 32 Z" fill="none" stroke="url(#g)" stroke-width="2.6" stroke-linejoin="round"/>
+        <circle cx="32" cy="32" r="8.5" fill="none" stroke="url(#g)" stroke-width="2.6"/>
+        <circle cx="32" cy="32" r="3" fill="url(#g)"/>
+        <circle cx="8" cy="32" r="1.6" fill="#38bdf8"/><circle cx="56" cy="32" r="1.6" fill="#38bdf8"/>
+        <circle cx="32" cy="6" r="1.6" fill="#a78bfa"/><circle cx="32" cy="58" r="1.6" fill="#a78bfa"/>
+      </svg>
+      <span class="brand-text"><b>POF</b><small>Hazem Soussi · The Thinking Machine</small></span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="#library">Library</a>
+      <a href="#paths">Paths</a>
+      <a href="#assistant">Assistant</a>
+      <a href="#quiz">Quiz</a>
+      <a href="#focus">Focus</a>
+      <a href="#collaborate">Collaborate</a>
+    </nav>
+    <div class="top-actions">
+      <span class="kbd-hint">Ctrl K</span>
+      <button id="themeToggle" class="icon-btn" aria-label="Toggle dark / light theme">
+        <span class="icon-sun">☀</span><span class="icon-moon" style="display:none">☾</span>
+      </button>
+      <button id="navToggle" class="icon-btn nav-toggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════ HERO ═══════════ -->
+<main id="top">
+<section class="hero" aria-labelledby="hero-title">
+  <div>
+    <span class="eyebrow"><span class="pulse"></span> POF · Open Portal · Est. Hazem Soussi</span>
+    <h1 id="hero-title">Learn the<br><span class="gradient-text">Technology</span><br>of the <span class="gradient-text">Modern Age</span></h1>
+    <p class="lede">A free, curated arsenal for the curious: <strong>AI &amp; machine learning</strong>, <strong>software &amp; web</strong>, <strong>security</strong>, <strong>data &amp; mathematics</strong> — and the often-forgotten foundations: <strong>mind, body and spirit</strong>. No paywalls. No fluff. Just real resources, guided paths, and a place to <strong>collaborate into the thinking machine</strong>.</p>
+    <div class="cta-row">
+      <a href="#library" class="btn primary">Open the Library →</a>
+      <a href="#assistant" class="btn gold">Ask the Thinking Machine</a>
+      <a href="#collaborate" class="btn ghost">Join the Collaboration</a>
+    </div>
+    <div class="hero-stats" aria-label="Portal statistics">
+      <div class="hstat"><b id="statTotal">0</b><span>resources</span></div>
+      <div class="hstat"><b id="statDone">0</b><span>completed</span></div>
+      <div class="hstat"><b id="statHours">0h</b><span>invested</span></div>
+    </div>
+  </div>
+
+  <aside class="hero-panel" aria-label="Your mastery dashboard">
+    <h2>Your Mastery — Live</h2>
+    <div class="mastery-pct"><span id="heroPct">0%</span> <small>completed</small></div>
+    <div class="progress" style="margin:.6rem 0 1rem"><div class="progress-fill" id="heroBar" style="width:0%"></div></div>
+    <div id="areaBreakdown" aria-label="Progress per domain"></div>
+    <div class="panel-foot">
+      <button id="exportMd" class="btn small ghost">⬇ Export journey (.md)</button>
+      <button id="exportJson" class="btn small ghost">⬇ Backup (.json)</button>
+      <button id="resetProgress" class="link-btn" style="color:var(--bad)">Reset progress</button>
+    </div>
+  </aside>
+</section>
+
+<!-- ═══════════ LIBRARY ═══════════ -->
+<section class="block" id="library" aria-labelledby="lib-title">
+  <div class="section-head">
+    <span class="num">01</span>
+    <h2 id="lib-title">The Library</h2>
+    <p>Every link below is a real, verified, publicly accessible resource. Filter by domain, level, cost or format — and mark what you finish.</p>
+  </div>
+
+  <div class="controls" role="search">
+    <input id="libSearch" class="search-cell" type="search" placeholder="Search 60+ resources… (try 'transformer', 'sql', 'sleep')" aria-label="Search resources" autocomplete="off">
+    <select id="libArea" aria-label="Filter by domain">
+      <option value="all">All domains</option>
+      <option value="ai">AI / ML / LLMs</option>
+      <option value="swe">Software &amp; Web</option>
+      <option value="sec">Security</option>
+      <option value="math">Data &amp; Math</option>
+      <option value="life">Life &amp; Spirit</option>
+    </select>
+    <select id="libLevel" aria-label="Filter by level">
+      <option value="all">All levels</option>
+      <option value="beginner">Beginner</option>
+      <option value="intermediate">Intermediate</option>
+      <option value="advanced">Advanced</option>
+    </select>
+    <select id="libCost" aria-label="Filter by cost">
+      <option value="all">Any cost</option>
+      <option value="free">Free</option>
+      <option value="freemium">Freemium</option>
+      <option value="paid">Paid</option>
+    </select>
+    <select id="libType" aria-label="Filter by type">
+      <option value="all">All types</option>
+      <option value="course">Course</option>
+      <option value="book">Book</option>
+      <option value="video">Video</option>
+      <option value="doc">Docs / Reference</option>
+      <option value="practice">Hands-on practice</option>
+      <option value="article">Article / Essay</option>
+      <option value="community">Community</option>
+    </select>
+    <select id="libSort" aria-label="Sort">
+      <option value="area">Sort: Domain</option>
+      <option value="az">Sort: A → Z</option>
+      <option value="time">Sort: Longest first</option>
+    </select>
+    <button id="libReset" class="btn ghost small">Clear filters</button>
+  </div>
+  <div class="lib-meta"><span id="libCount">0 resources</span><span>·</span><span>stored locally · no account needed</span></div>
+
+  <div class="lib-grid" id="libGrid"></div>
+
+  <div class="random-bar">
+    <button id="randomResource" class="btn gold">🎲 Surprise me — pick one I haven't finished</button>
+    <div class="random-out" id="randomOut" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- ═══════════ PATHS ═══════════ -->
+<section class="block" id="paths" aria-labelledby="paths-title">
+  <div class="section-head">
+    <span class="num">02</span>
+    <h2 id="paths-title">Curated Paths</h2>
+    <p>Five ordered journeys through the library — tick each step, watch each bar fill, feel the momentum compound.</p>
+  </div>
+  <div class="paths-grid" id="pathsGrid"></div>
+</section>
+
+<!-- ═══════════ ASSISTANT ═══════════ -->
+<section class="block" id="assistant" aria-labelledby="assistant-title">
+  <div class="section-head">
+    <span class="num">03</span>
+    <h2 id="assistant-title">The Thinking Machine — On-Device Assistant</h2>
+    <p>A real retrieval engine (TF-IDF over the library + POF knowledge base). No cloud, no keys, no tracking. It thinks with you, locally.</p>
+  </div>
+  <div class="assistant-shell">
+    <div class="assistant-side">
+      <span class="assistant-badge">100% On-Device</span>
+      <h3>Ask anything.</h3>
+      <p>It searches the full POF index and answers from the portal's curated knowledge — then hands you the exact resources to act on.</p>
+      <div class="assistant-chips" aria-label="Suggested questions">
+        <button class="assistant-chip">Where do I start?</button>
+        <button class="assistant-chip">How do I learn AI?</button>
+        <button class="assistant-chip">Security roadmap</button>
+        <button class="assistant-chip">Math for machine learning</button>
+        <button class="assistant-chip">Sleep and health</button>
+        <button class="assistant-chip">How to collaborate?</button>
+        <button class="assistant-chip">What is free here?</button>
+      </div>
+    </div>
+    <div class="assistant-main">
+      <div class="assistant-log" id="assistantLog" aria-live="polite">
+        <div class="bubble machine">Greetings, builder. I am the POF assistant — a retrieval engine trained on this portal alone. Ask me where to begin, what to study, or how to join the collaboration.</div>
+      </div>
+      <form class="assistant-form" id="assistantForm" autocomplete="off">
+        <input id="assistantInput" type="text" placeholder="Ask the thinking machine…" aria-label="Ask the POF assistant">
+        <button type="submit" class="btn primary">Send</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ QUIZ ═══════════ -->
+<section class="block" id="quiz" aria-labelledby="quiz-title">
+  <div class="section-head">
+    <span class="num">04</span>
+    <h2 id="quiz-title">Test Your Signal</h2>
+    <p>Twelve questions across the five domains. Instant feedback. Your best score is remembered on this device.</p>
+  </div>
+  <div class="quiz-shell" id="quizBox"></div>
+</section>
+
+<!-- ═══════════ FOCUS + BREATH ═══════════ -->
+<section class="block" id="focus" aria-labelledby="focus-title">
+  <div class="section-head">
+    <span class="num">05</span>
+    <h2 id="focus-title">Acts for Good Health</h2>
+    <p>A sharp mind in a depleted body builds fragile machines. Deep-work timer + box breathing — free, offline, yours.</p>
+  </div>
+  <div class="focus-grid">
+    <div class="focus-panel">
+      <h3>Deep Work Timer <span style="opacity:.6">— Pomodoro</span></h3>
+      <div class="timer-display" id="timerDisplay" role="timer">25:00</div>
+      <div class="muted" id="timerMode" style="font-family:var(--font-mono);letter-spacing:.18em;text-transform:uppercase;font-size:.72rem">Deep focus</div>
+      <div class="mode-row" role="group" aria-label="Timer mode">
+        <button class="mode-btn active" data-mode="focus">Focus 25</button>
+        <button class="mode-btn" data-mode="short">Break 5</button>
+        <button class="mode-btn" data-mode="long">Break 15</button>
+      </div>
+      <div class="timer-actions">
+        <button id="timerToggle" class="btn primary">Start</button>
+        <button id="timerReset" class="btn ghost">Reset</button>
+      </div>
+      <div class="focus-sessions">Sessions completed on this device: <b id="focusSessions">0</b></div>
+    </div>
+    <div class="focus-panel">
+      <h3>Box Breathing <span style="opacity:.6">— 4·4·4·4</span></h3>
+      <div class="breath-circle" id="breathCircle" aria-hidden="true"></div>
+      <div class="breath-label" id="breathLabel">Ready</div>
+      <button id="breathToggle" class="btn ghost">Begin breathing</button>
+      <p class="muted" style="font-size:.8rem;max-width:22rem">Inhale 4s · hold 4s · exhale 4s · hold 4s. Used by first responders and snipers to steady the nervous system in under a minute.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ QUOTES ═══════════ -->
+<section class="block" id="wisdom" aria-labelledby="wisdom-title">
+  <div class="section-head">
+    <span class="num">06</span>
+    <h2 id="wisdom-title">Words That Built the Modern Age</h2>
+  </div>
+  <div class="quote-shell">
+    <blockquote class="quote-text" id="quoteText"></blockquote>
+    <div class="quote-nav">
+      <button id="quotePrev" class="icon-btn" aria-label="Previous quote">←</button>
+      <span class="quote-counter" id="quoteCounter">1 / 1</span>
+      <button id="quoteNext" class="icon-btn" aria-label="Next quote">→</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ COLLABORATE ═══════════ -->
+<section class="block" id="collaborate" aria-labelledby="collab-title">
+  <div class="section-head">
+    <span class="num">07</span>
+    <h2 id="collab-title">Collaborate Into the Thinking Machine</h2>
+    <p>POF is not a monument — it is an invitation. Write your manifest below; it is saved on your device and ready to send.</p>
+  </div>
+  <div class="collab-grid">
+    <form class="form-panel" id="collabForm">
+      <label for="f-name">Your name</label>
+      <input id="f-name" name="name" required placeholder="Ada Lovelace">
+      <label for="f-contact">Contact (email / GitHub / X)</label>
+      <input id="f-contact" name="contact" required placeholder="you@example.com · github.com/you">
+      <label for="f-offer">What you offer</label>
+      <textarea id="f-offer" name="offer" rows="2" required placeholder="I can… (review links, write summaries, translate to Arabic/French, test resources, design, code…)"></textarea>
+      <label for="f-build">What you want to build</label>
+      <textarea id="f-build" name="build" rows="2" required placeholder="A track? A project? A translation of POF into Arabic? A newsletter?"></textarea>
+      <label for="f-skills">Skills &amp; tools</label>
+      <input id="f-skills" name="skills" placeholder="Python, PyTorch, React, writing, security, Islam/philosophy…">
+      <label for="f-availability">Availability</label>
+      <input id="f-availability" name="availability" placeholder="4h/week · evenings · weekends">
+    </form>
+    <div class="manifest-panel">
+      <h3>Your Collaboration Manifest</h3>
+      <p class="muted" style="font-size:.82rem;margin-bottom:.6rem">Live preview — generated locally, never uploaded anywhere. Copy it and send it to Hazem Soussi, or keep it as your personal north star.</p>
+      <pre class="manifest-out" id="collabManifest">Fill the form — your manifest writes itself here.</pre>
+      <div class="manifest-actions">
+        <button id="copyManifest" class="btn primary small">Copy manifest</button>
+        <button id="downloadManifest" class="btn ghost small">Download .md</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="propose-grid">
+    <form class="form-panel" id="proposeForm">
+      <h3 style="font-family:var(--font-head);margin-bottom:.2rem">Propose a Resource</h3>
+      <p class="muted" style="font-size:.82rem">Found something world-class that POF is missing? Submit it. Your proposals are stored on this device and exportable.</p>
+      <label for="p-title">Title</label>
+      <input id="p-title" name="ptitle" required placeholder="CS229 Notes — Andrew Ng">
+      <label for="p-url">URL (https://…)</label>
+      <input id="p-url" name="purl" required type="url" placeholder="https://example.com/course">
+      <div class="manifest-actions">
+        <button type="submit" class="btn primary small">Propose resource</button>
+        <button type="button" id="exportProposed" class="btn ghost small">Export proposals (.md)</button>
+      </div>
+    </form>
+    <div class="manifest-panel">
+      <h3>Your Proposals</h3>
+      <ul class="proposed-list" id="proposedList"></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ MANIFESTO ═══════════ -->
+<section class="block" aria-labelledby="manifesto-title">
+  <p class="manifesto">
+    <span class="eyebrow"><span class="pulse"></span> The POF Manifesto</span>
+    <p id="manifesto-title">We do not consume technology — <em>we converse with it.</em><br>We do not chase novelty — <em>we chase depth.</em><br>We build machines that think, so that humans may think longer, kinder, and truer.<br><em>The thinking machine is not the future. It is the practice.</em></p>
+    <p class="sig">— Hazem Soussi · POF</p>
+  </p>
+</section>
+</main>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <p><b>POF</b> · Hazem Soussi — The Thinking Machine · <span id="year"></span> · <a href="LEGITIMACY.md">Legitimacy &amp; Ethics</a> · <a href="humans.txt">Humans</a></p>
+  <div class="foot-links">
+    <a href="#library">Library</a>·
+    <a href="#paths">Paths</a>·
+    <a href="#assistant">Assistant</a>·
+    <a href="#collaborate">Collaborate</a>
+  </div>
+  <p style="max-width:44rem;margin:0 auto">All progress, manifests and proposals are stored locally in your browser. External resources belong to their authors and institutions. Learn well; build wisely; collaborate into the thinking machine.</p>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- ═══════════ COMMAND PALETTE ═══════════ -->
+<div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Command palette">
+  <div class="palette-box">
+    <input id="paletteInput" type="text" placeholder="Type a command or search the library…" aria-label="Command palette input">
+    <div class="palette-results" id="paletteResults"></div>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/assistant.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
