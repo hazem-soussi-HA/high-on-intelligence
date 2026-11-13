@@ -1,0 +1,46 @@
+name: security
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  security:
+    name: security
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: JavaScript syntax check (all files)
+        run: |
+          set -e
+          for f in js/*.js; do
+            node --check "$f"
+            echo "OK: $f"
+          done
+
+      - name: No secret-like strings in tracked files
+        run: |
+          set -e
+          ! grep -rInE '(ghp_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|AKIA[0-9A-Z]{16}|-----BEGIN [A-Z ]*PRIVATE KEY-----|sk_live_|xox[baprs]-[A-Za-z0-9-]{10,}|api[_-]?key["'"'"']?\s*[:=]\s*["'"'"'][A-Za-z0-9_\-]{16,})' . \
+            --exclude-dir=.git --exclude-dir=dist || { echo "::error::Possible secret found"; exit 1; }
+
+      - name: All resource URLs use HTTPS
+        run: |
+          set -e
+          ! grep -rInE '"url"\s*:\s*"http://' js/ || { echo "::error::Non-HTTPS resource URL found"; exit 1; }
+
+      - name: Internal references exist (logo, css, js)
+        run: |
+          set -e
+          test -f assets/logo.svg
+          test -f css/style.css
+          test -f js/app.js
+          test -f js/data.js
+          test -f js/assistant.js
+          echo "All referenced assets present."
