@@ -1,0 +1,20 @@
+name: "stillness — background process"
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "30 5 * * *"   # every day at 05:30 UTC — before the builder's first coffee
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stillness:
+    name: "a minute for the builder"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: "breathe, move, hydrate, gratitude"
+        run: python3 soul/soul.py
