@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Living Earth — Real-Time 3D | High on Intelligence</title>
+<meta name="description" content="A real-time interactive 3D Earth: NASA Blue Marble day map, Black Marble night lights, the true day/night terminator driven by the sun's live position — and the ISS tracked live overhead (NORAD 25544).">
+<meta name="author" content="Hazem Soussi">
+<meta name="theme-color" content="#03040c">
+<meta property="og:title" content="The Living Earth — High on Intelligence">
+<meta property="og:description" content="Real NASA textures. Real terminator. Real ISS, live. Zero mock.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hazem-soussi-ha.github.io/high-on-intelligence/earth.html">
+<meta property="og:image" content="https://hazem-soussi-ha.github.io/high-on-intelligence/assets/og-image.png">
+<link rel="canonical" href="https://hazem-soussi-ha.github.io/high-on-intelligence/earth.html">
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .earth-layout { display:grid; grid-template-columns: 1.55fr 1fr; gap:1.25rem; }
+  .earth-panel { background:#03040c; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; position:relative; box-shadow:var(--shadow); }
+  .earth-panel canvas { display:block; width:100%; cursor:grab; touch-action:none; }
+  .earth-overlay { position:absolute; top:.8rem; left:.9rem; display:flex; gap:.45rem; flex-wrap:wrap; }
+  .earth-hint { position:absolute; bottom:.7rem; left:.9rem; font-family:var(--font-mono); font-size:.63rem; letter-spacing:.08em; color:rgba(255,255,255,.5); pointer-events:none; }
+  .earth-side { display:flex; flex-direction:column; gap:.8rem; }
+  .panel { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:1.1rem 1.25rem; backdrop-filter:blur(8px); }
+  .panel h3 { font-family:var(--font-mono); font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--text-dim); margin-bottom:.55rem; display:flex; align-items:center; gap:.5rem; }
+  .iss-state { font-family:var(--font-mono); font-size:.66rem; padding:.1rem .4rem; border-radius:6px; }
+  .iss-state.live { color:var(--ok); border:1px solid var(--ok); animation:blink 1.4s infinite; }
+  .iss-state.off { color:var(--bad); border:1px solid var(--bad); }
+  @keyframes blink { 50% { opacity:.45; } }
+  .tele-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:.5rem; }
+  .tele { background:var(--surface-2); border:1px solid var(--line); border-radius:12px; padding:.5rem .65rem; }
+  .tele b { display:block; font-family:var(--font-mono); font-size:1.02rem; color:var(--accent-2); font-variant-numeric:tabular-nums; }
+  .tele span { font-size:.56rem; text-transform:uppercase; letter-spacing:.1em; color:var(--text-dim); }
+  .sun-row { display:flex; justify-content:space-between; font-size:.82rem; padding:.28rem 0; border-bottom:1px dashed var(--line); }
+  .sun-row:last-child { border-bottom:none; }
+  .sun-row b { font-family:var(--font-mono); color:var(--gold); font-variant-numeric:tabular-nums; }
+  .earth-facts { display:grid; grid-template-columns:repeat(4,1fr); gap:.7rem; margin-top:.9rem; }
+  .efact { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:.6rem .8rem; }
+  .efact b { display:block; font-family:var(--font-mono); font-size:1.05rem; color:var(--accent); }
+  .efact span { font-size:.58rem; text-transform:uppercase; letter-spacing:.1em; color:var(--text-dim); }
+  .earth-foot-note { font-family:var(--font-mono); font-size:.66rem; color:var(--text-dim); margin-top:.9rem; text-align:center; }
+  @media (max-width: 980px) { .earth-layout { grid-template-columns:1fr; } .earth-facts { grid-template-columns:repeat(2,1fr); } }
+</style>
+</head>
+<body>
+<div class="backdrop" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html" aria-label="High on Intelligence — home">
+      <svg class="brand-mark" viewBox="0 0 64 64" role="img" aria-label="High on Intelligence logo"><defs><linearGradient id="g6" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a78bfa"/><stop offset=".5" stop-color="#38bdf8"/><stop offset="1" stop-color="#fbbf24"/></linearGradient></defs><rect x="2" y="2" width="60" height="60" rx="14" fill="#12121f" stroke="url(#g6)" stroke-width="2.4"/><path d="M10 32 Q32 12 54 32 Q32 52 10 32 Z" fill="none" stroke="url(#g6)" stroke-width="2.6" stroke-linejoin="round"/><circle cx="32" cy="32" r="8.5" fill="none" stroke="url(#g6)" stroke-width="2.6"/><circle cx="32" cy="32" r="3" fill="url(#g6)"/></svg>
+      <span class="brand-text"><b>HOI</b><small>High on Intelligence · Hazem Soussi</small></span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html#library">Library</a>
+      <a href="universe.html">Universe</a>
+      <a href="earth.html" style="color:var(--accent)" aria-current="page">Earth</a>
+      <a href="status.html">Status</a>
+      <a href="radar.html">Radar</a>
+      <a href="index.html#collaborate">Collaborate</a>
+    </nav>
+    <div class="top-actions"><a href="index.html" class="btn small ghost">← Portal</a></div>
+  </div>
+</header>
+
+<main>
+<section class="hero" style="grid-template-columns:1fr;padding-top:7rem;padding-bottom:1rem">
+  <div>
+    <span class="eyebrow"><span class="pulse"></span> HOI · The Living Earth · Real-Time</span>
+    <h1>One rock,<br><span class="gradient-text">seen together.</span></h1>
+    <p class="lede">NASA's real Blue Marble by day, Black Marble at night — with the true terminator moving across the planet at 465 m/s, and the <strong>ISS tracked live</strong> above your cursor. Drag to orbit · scroll to zoom. The Earth doesn't care if you're watching. Watch anyway.</p>
+  </div>
+</section>
+
+<section class="block" aria-label="Interactive real-time Earth">
+  <div class="section-head">
+    <span class="num">01</span><h2>The Living Earth</h2>
+    <p>Day/night from the sun's true position · ISS NORAD 25544 · NASA textures — vendored, zero mock.</p>
+  </div>
+
+  <div class="earth-layout">
+    <div class="earth-panel">
+      <canvas id="earthCanvas" role="application" aria-label="Interactive 3D Earth with live ISS position"></canvas>
+      <div class="earth-overlay">
+        <button id="btnNight" class="btn small primary">Night lights: ON</button>
+        <button id="btnAuto" class="btn small primary">Auto-orbit: ON</button>
+        <button id="btnReset" class="btn small ghost" style="background:rgba(6,8,18,.6);border-color:rgba(255,255,255,.25);color:#fff">Reset view</button>
+      </div>
+      <div class="earth-hint">DRAG to orbit · SCROLL to zoom</div>
+      <div id="webglFallback" hidden style="padding:3rem;text-align:center;color:#a8a4c4">WebGL is unavailable in this browser — the Earth keeps turning regardless.</div>
+    </div>
+
+    <div class="earth-side">
+      <div class="panel" aria-live="polite">
+        <h3><span id="issState" class="iss-state live">● LIVE</span> ISS — NORAD 25544</h3>
+        <div class="tele-grid">
+          <div class="tele"><b id="issLat">—</b><span>Latitude</span></div>
+          <div class="tele"><b id="issLng">—</b><span>Longitude</span></div>
+          <div class="tele"><b id="issAlt">—</b><span>Altitude</span></div>
+          <div class="tele"><b id="issVel">—</b><span>Velocity</span></div>
+          <div class="tele"><b id="issVis">—</b><span>Visibility</span></div>
+          <div class="tele"><b id="issTime">—</b><span>Sampled UTC</span></div>
+        </div>
+        <p style="font-size:.72rem;color:var(--text-dim);margin-top:.5rem">Telemetry: <a href="https://wheretheiss.at/" target="_blank" rel="noopener noreferrer">wheretheiss.at</a> · updates every 4s · the gold trail is the station's recent path.</p>
+      </div>
+
+      <div class="panel">
+        <h3>Sun — The Terminator, Live</h3>
+        <div class="sun-row"><span>UTC now</span><b id="hudUtc">—</b></div>
+        <div class="sun-row"><span>Day of year</span><b id="hudDoy">—</b></div>
+        <div class="sun-row"><span>Solar declination</span><b id="hudDecl">—</b></div>
+        <div class="sun-row"><span>Subsolar point</span><b id="hudSubsolar">—</b></div>
+      </div>
+
+      <div class="panel">
+        <h3>Field Notes</h3>
+        <div class="earth-facts" style="grid-template-columns:repeat(2,1fr)">
+          <div class="efact"><b>~415 km</b><span>ISS altitude</span></div>
+          <div class="efact"><b>~92.7 min</b><span>orbit period</span></div>
+          <div class="efact"><b>27,600</b><span>km/h — 7.66 km/s</span></div>
+          <div class="efact"><b>16 sunrises</b><span>per ISS day</span></div>
+        </div>
+        <p style="font-size:.74rem;color:var(--text-dim);margin-top:.5rem">Effective Earth equatorial speed: 465 m/s. Effective day length varies by season and latitude — the terminator sweeps ~1,670 km/h at the equator.</p>
+      </div>
+    </div>
+  </div>
+  <p class="earth-foot-note">Textures: NASA Blue Marble &amp; Black Marble (public domain), hosted by three.js · orientation GMST-derived — educational, not navigational · part of <a href="index.html">High on Intelligence</a></p>
+</section>
+</main>
+
+<footer>
+  <p><b>The Living Earth</b> · part of <a href="index.html">High on Intelligence</a> · <span id="year"></span></p>
+</footer>
+
+<script src="assets/vendor/three.min.js"></script>
+<script src="js/earth.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
