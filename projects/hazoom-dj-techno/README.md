@@ -128,6 +128,20 @@ exists.
 node dj-intelligence.js --solo kick --bars 20 --out kick.wav
 ```
 
+## HAZOOM FM — web radio that heals
+
+Tired harsh synths? Tune instead. `hazoom-fm.html` is a web radio built on two honest shelves:
+
+- **Official 24/7 YouTube streams**, embedded through YouTube's own player (no ripping, no re-broadcast):
+  `91.7` Lofi Girl — lofi hip hop radio · `94.3` beats to sleep · `96.9` peaceful piano · `99.5` synthwave radio
+- **Aethric** — our own station: `hazoom-dj-01` and `hazoom-dj-warehouse`, rendered by this repo's engine. MIT.
+
+No accounts, no downloads, no rebroadcast: streams play from youtube.com's embed with royalties flowing to
+the rightful owners — exactly the portal's [Legitimacy & Ethics](../../LEGITIMACY.md) rule. Real over-the-air
+FM needs a licence; this is a dial into light, not a transmitter.
+
+Play it: open `hazoom-fm.html`, pick a station, breathe.
+
 ---
 
 ## The synthesiser
