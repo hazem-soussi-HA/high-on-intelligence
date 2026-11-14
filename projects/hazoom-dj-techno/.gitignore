@@ -1,0 +1,20 @@
+# rendered audio — regenerate, don't commit
+*.wav
+*.mp3
+!audio/*.mp3
+out/
+*.tmp
+
+# node
+node_modules/
+npm-debug.log*
+
+# os
+.DS_Store
+Thumbs.db
+
+# secrets — never
+.env
+.env.*
+*.key
+*.pem
