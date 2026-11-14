@@ -95,6 +95,17 @@
   .led.on{background:var(--gr);box-shadow:0 0 8px var(--gr)}
   .warn{color:var(--am);font:11.5px var(--mono);line-height:1.7}
   h3{font-size:12px;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;font:10.5px var(--mono);margin-bottom:9px}
+
+  /* healing */
+  .heal-grid{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center}
+  @media(max-width:900px){.heal-grid{grid-template-columns:1fr}}
+  .breath-wrap{text-align:center;min-width:120px}
+  .breath{width:64px;height:64px;border-radius:50%;margin:0 auto;background:radial-gradient(circle at 40% 40%,#22d3ee55,#0b0d10 70%);border:1px solid #1e3a44;animation:hoi-breath 16s ease-in-out infinite}
+  @keyframes hoi-breath{0%,37.5%,100%{transform:scale(.62);opacity:.6}18.75%,50%{transform:scale(1);opacity:1}62.5%{transform:scale(1);opacity:1}75%,87.5%{transform:scale(.62);opacity:.6}}
+  .breath-lbl{font:10.5px var(--mono);color:var(--dim);margin-top:8px;letter-spacing:.14em;text-transform:uppercase}
+  .pill{display:inline-flex;gap:4px;align-items:center;border:1px solid var(--line);border-radius:999px;padding:3px 4px}
+  .pill button{border:none;background:transparent;border-radius:999px;padding:4px 12px;font-size:11px}
+  .pill button.on{background:var(--cy);color:#04212a;font-weight:650}
 </style>
 </head>
 <body>
@@ -105,6 +116,7 @@
   <span class="tag" id="audioTag">audio: idle</span>
   <span class="tag" id="voiceTag">0 voices</span>
   <span class="tag" id="cpuTag">cpu: —</span>
+  <span class="tag on">healing ready</span>
   <div class="spacer"></div>
   <button id="panic" class="sm">panic</button>
   <button id="help" class="sm">keys</button>
@@ -164,6 +176,47 @@
   </div>
 </div>
 
+
+<div class="card" style="margin-bottom:14px">
+  <div class="h">healing <span class="n">lovely techno for the nervous system</span></div>
+  <div class="heal-grid">
+    <div>
+      <div class="row">
+        <span style="font:10.5px var(--mono);color:var(--dim2)">INTENT</span>
+        <select id="healIntent">
+          <option value="restore">396 Hz · restore (release fear)</option>
+          <option value="calm" selected>528 Hz · calm (transformation)</option>
+          <option value="open">639 Hz · open (connection)</option>
+          <option value="still">963 Hz · still (oneness)</option>
+        </select>
+        <span style="font:10.5px var(--mono);color:var(--dim2)">TUNE</span>
+        <span class="pill" role="group" aria-label="Concert pitch">
+          <button id="tune432" class="on">432 Hz</button><button id="tune440">440 Hz</button>
+        </span>
+      </div>
+      <div class="row" style="margin-top:11px">
+        <span style="font:10.5px var(--mono);color:var(--dim2)">TEMPO</span>
+        <button class="sm" data-healbpm="55">55 breath</button>
+        <button class="sm on" data-healbpm="60">60 calm</button>
+        <button class="sm" data-healbpm="66">66 flow</button>
+        <button class="sm" data-healbpm="72">72 open</button>
+        <button class="sm" data-healbpm="90">90 gentle</button>
+      </div>
+      <div class="row" style="margin-top:11px">
+        <button id="composeHealing" class="on">✦ compose healing loop</button>
+        <button id="bellsToggle" class="sm on" title="Singing-bowl bell every 8 steps">bowl bells: on</button>
+        <button id="binauralToggle" class="sm" title="Binaural theta 6.5 Hz on 136.1 Hz carrier, both ears, under everything">binaural θ: off</button>
+        <button id="undertoneToggle" class="sm" title="528 Hz undertone at −26 dB, always the same note">528 undertone: off</button>
+      </div>
+      <p class="warn" style="color:var(--dim2);margin-top:11px">Composes a slow, consonant loop into the sequencer (major pentatonic, pure triads, slow attack, long reverb). Not medical advice — resonance is a practice, not a prescription. Headphones unlock binaural listening.</p>
+    </div>
+    <div class="breath-wrap" aria-hidden="true">
+      <div class="breath"></div>
+      <div class="breath-lbl" id="breathLbl">in · hold · out · hold</div>
+    </div>
+  </div>
+</div>
+
 <div class="card" style="margin-bottom:14px">
   <div class="h">keyboard <span class="n">A–K lower octave · Q–P upper · Z/X octave</span></div>
   <div class="keys" id="keys"></div>
@@ -177,7 +230,7 @@
     <button id="randSeq" class="sm">randomise</button>
     <div style="flex:1"></div>
     <span style="font:10.5px var(--mono);color:var(--dim2)">BPM</span>
-    <input type="text" id="bpm" value="112" style="width:52px">
+    <input type="text" id="bpm" value="60" style="width:52px">
     <span style="font:10.5px var(--mono);color:var(--dim2)">STEPS</span>
     <input type="text" id="nsteps" value="16" style="width:40px">
     <span style="font:10.5px var(--mono);color:var(--dim2)">SWING</span>
@@ -202,8 +255,7 @@
    synthesised — there are no samples and no playback.
    ═══════════════════════════════════════════════════════════════════ */
 
-const A4 = 440;
-const nf = n => A4 * Math.pow(2, (n - 69) / 12);
+const nf = n => P.tune * Math.pow(2, (n - 69) / 12);
 
 const P = {
   osc1: 'sawtooth', osc2: 'square', detune: 7, sub: 0,
@@ -214,7 +266,8 @@ const P = {
   lfoRate: 5.2, lfoDepth: 220, lfoWave: 'sine', lfoDest: 'filter',
   delayMix: 0.18, delayTime: 0.28, delayFb: 0.34,
   verbMix: 0.2, master: 0.72, glide: 0, bendRange: 2,
-  seq: [], bpm: 112, steps: 16, swing: 0, playing: false, step: 0,
+  seq: [], bpm: 60, steps: 16, swing: 0, playing: false, step: 0,
+  tune: 432, intent: 'calm', bells: true, binaural: false, undertone: false,
 };
 
 const NAMES = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
@@ -403,8 +456,13 @@ function renderSeq(){
 }
 let timer = null;
 function runStep(i){
-  const s = P.seq[i]; if (!s || !s.on) return;
-  const id = noteOn(s.note, 0.9);
+  const s = P.seq[i];
+  if (P.bells && i % 8 === 0) {
+    const intent = INTENTS[P.intent] || INTENTS.calm;
+    bowl(intent.root + 24, 0.65);
+  }
+  if (!s || !s.on) return;
+  const id = noteOn(s.note, 0.72);
   const ms = (60 / P.bpm / 4) * 1000 * s.len;
   setTimeout(() => noteOff(id), ms);
 }
@@ -612,6 +670,141 @@ function drawScope(){
   document.getElementById('cpuTag').textContent = 'voices ' + active.size + ' · ' + (ctx ? ctx.sampleRate/1000 + 'k' : '—');
 }
 
+
+/* ── healing: solfeggio intents, pure triads, bowl bells ─────────────
+   Honest scope: this does not heal anyone by itself. It removes the
+   musical harshness (tritones, minor 2nds, aggressive transients),
+   retunes to A=432, slows the heart of the loop, and layers the
+   classic intent frequencies. What heals is the listener. */
+const INTENTS = {
+  restore: { root: 55, freq: '396 Hz' },
+  calm:    { root: 48, freq: '528 Hz' },
+  open:    { root: 51, freq: '639 Hz' },
+  still:   { root: 59, freq: '963 Hz' },
+};
+
+function bowl(note, vel = 0.8) {
+  initAudio(); if (ctx.state === 'suspended') ctx.resume();
+  const t = ctx.currentTime, id = ++voiceCounter;
+  const f = nf(note) * 2;                              // bells an octave up
+  const car = ctx.createOscillator(); car.type = 'sine'; car.frequency.value = f;
+  const mod = ctx.createOscillator(); mod.type = 'sine'; mod.frequency.value = f * 2.01;
+  const modG = ctx.createGain();
+  modG.gain.setValueAtTime(f * 5.2, t);
+  modG.gain.setTargetAtTime(f * 0.85, t, 0.85);        // index decays fast → pure fundamental lingers
+  mod.connect(modG); modG.connect(car.frequency);
+  const bell = ctx.createGain();
+  bell.gain.setValueAtTime(0, t);
+  bell.gain.linearRampToValueAtTime(vel * 0.5, t + 0.008);
+  bell.gain.setTargetAtTime(0, t + 0.05, 2.15);        // very long tail
+  const vca = ctx.createGain(); vca.gain.setTargetAtTime(1, t, 0.01);
+  const pan = ctx.createStereoPanner ? ctx.createStereoPanner() : null;
+  if (pan) { pan.pan.value = (Math.random() * 0.5) - 0.25; }
+  car.connect(bell); bell.connect(vca);
+  if (pan) { vca.connect(pan); pan.connect(vcaBus); pan.connect(preVerb); }
+  else { vca.connect(vcaBus); vca.connect(preVerb); }
+  car.start(t); mod.start(t); car.stop(t + 9); mod.stop(t + 9);
+  active.set(id, { id, note, o1: car, o2: mod, sub: car, lfo: mod, amp: bell, vca, t, bell: true });
+  renderVoices();
+  return id;
+}
+
+function composeHealing() {
+  const intent = INTENTS[P.intent] || INTENTS.calm;
+  const root = intent.root;
+  // the patch: slow attack, long release, consonant spectrum, gentle drive
+  Object.assign(P, {
+    a: 0.38, d: 0.9, s: 0.85, r: 1.7,
+    cutoff: 640, res: 1.4, envAmt: 520, kbd: 0.15,
+    drive: 0.07, detune: 4, sub: 0.28, mix: 0.22,
+    delayMix: 0.14, delayFb: 0.3, verbMix: 0.38,
+    lfoRate: 0.18, lfoDepth: 260, lfoDest: 'filter',
+    bpm: 60, steps: 16, swing: 0.12, tune: 432,
+  });
+  // the loop: long pure notes walking the pentatonic, breathing space
+  P.seq = [];
+  const plan = [ // semitones from root — all inside major pentatonic
+    { step: 0, deg: 0, len: 0.92 },
+    { step: 4, deg: 4, len: 0.75 },
+    { step: 7, deg: 7, len: 0.6 },
+    { step: 9, deg: 9, len: 0.75 },
+    { step: 12, deg: 12, len: 0.92 },
+    { step: 14, deg: 14, len: 0.45 },
+  ];
+  for (let i = 0; i < 16; i++) {
+    const p = plan.find(p => p.step === i);
+    P.seq.push({ on: !!p, note: root + (p ? p.deg : 0), len: p ? p.len : 0.25 });
+  }
+  // rebuild every control surface from P
+  buildKnobs('knobs', KNOBS);
+  buildEnv('adsr', 'a', true);
+  buildEnv('fenv', 'f', false);
+  buildLfo();
+  document.getElementById('bpm').value = String(P.bpm);
+  document.getElementById('nsteps').value = String(P.steps);
+  document.getElementById('swing').value = String(Math.round(P.swing * 100));
+  syncTuneButtons();
+  renderSeq();
+  document.getElementById('seqInfo').textContent = `healing loop · ${P.intent} · 60 bpm · A=432 Hz`;
+}
+
+/* binaural θ 6.5 Hz on a 136.1 Hz carrier — under everything, both ears */
+let binauralNodes = null;
+function toggleBinaural() {
+  const btn = document.getElementById('binauralToggle');
+  if (binauralNodes) {
+    binauralNodes.forEach(n => { try { n.stop(); } catch (e) {} });
+    binauralNodes.forEach(n => n.disconnect());
+    binauralNodes = null; P.binaural = false;
+    btn.classList.remove('on'); btn.textContent = 'binaural θ: off';
+    return;
+  }
+  initAudio(); if (ctx.state === 'suspended') ctx.resume();
+  const mk = (hz, pan) => {
+    const o = ctx.createOscillator(); o.type = 'sine'; o.frequency.value = hz;
+    const g = ctx.createGain(); g.gain.value = 0.03;
+    let out = g;
+    if (ctx.createStereoPanner) { const p = ctx.createStereoPanner(); p.pan.value = pan; g.connect(p); out = p; }
+    o.connect(g); out.connect(master); o.start();
+    return o;
+  };
+  binauralNodes = [mk(136.1, -1), mk(142.6, 1)];        // Δ 6.5 Hz theta
+  P.binaural = true;
+  btn.classList.add('on'); btn.textContent = 'binaural θ: on';
+}
+
+/* 528 Hz undertone — one fixed note, a whisper under the floor */
+let undertoneNode = null;
+function toggleUndertone() {
+  const btn = document.getElementById('undertoneToggle');
+  if (undertoneNode) {
+    try { undertoneNode.stop(); } catch (e) {}
+    undertoneNode.disconnect(); undertoneNode = null; P.undertone = false;
+    btn.classList.remove('on'); btn.textContent = '528 undertone: off';
+    return;
+  }
+  initAudio(); if (ctx.state === 'suspended') ctx.resume();
+  const o = ctx.createOscillator(); o.type = 'sine'; o.frequency.value = 528;
+  const g = ctx.createGain(); g.gain.value = 0.018;
+  o.connect(g); g.connect(master); o.start();
+  undertoneNode = o; P.undertone = true;
+  btn.classList.add('on'); btn.textContent = '528 undertone: on';
+}
+
+function syncTuneButtons() {
+  document.getElementById('tune432').classList.toggle('on', P.tune === 432);
+  document.getElementById('tune440').classList.toggle('on', P.tune === 440);
+}
+
+/* breath pacer label cycling — 4·4·4·4 box breath, one 16 s round */
+(function breathPacer(){
+  const el = document.getElementById('breathLbl');
+  if (!el) return;
+  const phases = ['breathe in', 'hold', 'breathe out', 'hold'];
+  let i = 0;
+  setInterval(() => { el.textContent = phases[i]; i = (i + 1) % phases.length; }, 4000);
+})();
+
 /* ── wiring ───────────────────────────────────────────────────── */
 buildKnobs('knobs', KNOBS);
 buildEnv('adsr', 'a', true);
@@ -653,6 +846,20 @@ document.querySelectorAll('[data-lfoDest]').forEach(b => b.onclick = () => {
 document.getElementById('bypassDrive').onclick = function(){ driveNode.curve = this.classList.contains('on') ? null : DRIVE_CURVE; this.classList.toggle('on'); this.textContent = 'drive: ' + (this.classList.contains('on') ? 'on' : 'off'); };
 document.getElementById('bypassVerb').onclick = function(){ P.verbMix = this.classList.contains('on') ? 0 : 0.2; applyMaster(); this.classList.toggle('on'); this.textContent = 'verb: ' + (this.classList.contains('on') ? 'on' : 'off'); };
 document.getElementById('bypassDelay').onclick = function(){ P.delayMix = this.classList.contains('on') ? 0 : 0.18; applyMaster(); this.classList.toggle('on'); this.textContent = 'delay: ' + (this.classList.contains('on') ? 'on' : 'off'); };
+
+document.getElementById('healIntent').onchange = e => { P.intent = e.target.value; };
+document.getElementById('tune432').onclick = () => { P.tune = 432; syncTuneButtons(); };
+document.getElementById('tune440').onclick = () => { P.tune = 440; syncTuneButtons(); };
+document.querySelectorAll('[data-healbpm]').forEach(b => b.onclick = () => {
+  P.bpm = +b.dataset.healbpm;
+  document.getElementById('bpm').value = String(P.bpm);
+  document.querySelectorAll('[data-healbpm]').forEach(x => x.classList.toggle('on', x === b));
+  if (P.playing){ stop(); start(); } syncSeqInfo();
+});
+document.getElementById('composeHealing').onclick = composeHealing;
+document.getElementById('bellsToggle').onclick = function(){ P.bells = !P.bells; this.classList.toggle('on', P.bells); this.textContent = 'bowl bells: ' + (P.bells ? 'on' : 'off'); };
+document.getElementById('binauralToggle').onclick = toggleBinaural;
+document.getElementById('undertoneToggle').onclick = toggleUndertone;
 
 document.getElementById('audioTag').textContent = 'audio: ready — click play or a key';
 </script>
