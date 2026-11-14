@@ -1,10 +1,10 @@
 # Aethric — Staying up "somewhere, anywhere" (architecture)
 
-## Current live state (2026-11-13)
+## Current live state (2026-11-14)
 - **Origin A (live): GitHub Pages** → https://hazem-soussi-ha.github.io/high-on-intelligence/
-  Global CDN, TLS trusted, auto from this repo. Push to main → redeploys in ~1 min.
-- **Origin B (LAN): this machine 192.168.1.4:8098** (python http.server) → replace with the Caddy LXC when Proxmox is ready.
-- **Origin C (Proxmox LXC): to provision** → see install-lxc.sh.
+  Global CDN, TLS trusted, auto from this repo. Push to main → redeploys in ~1 min. Branch protection requires the `security` check (strict, admins enforced, linear history, no force-push/delete).
+- **Origin C (live, LAN-only): Proxmox LXC** — unprivileged Debian 13 CT, Caddy serving from this repo at `/var/www/hoi`, HTTPS via Caddy `tls internal` (its own LAN CA), HTTP→HTTPS 308 redirect. **No openssh, no sshd at all** — shell access only via `pct enter` on the host. Firewall (`/etc/pve/firewall/231.fw`, datacenter firewall enabled): ICMP dropped, LAN-only TCP 80/443 accepted, everything else dropped. Sync: `cron.d/hoi-sync` `git pull --ff-only` every 5 min. Retired: the old python http.server origin.
+- Topology (LAN): `pof.aethric.lan` → CT → Caddy → static files; PVE proxies nothing inbound from the internet.
 
 ## Recommended sovereign topology
 ```
@@ -14,8 +14,9 @@
                               │             │
               ┌───────────────▼──┐   ┌──────▼───────────┐   ┌──────────────────┐
               │  GitHub Pages     │   │  LXC (Proxmox)  │   │  Remote VPS/node  │
-              │  (CDN origin)     │   │  Caddy+LXC      │   │  second LXC       │
-              └───────────────────┘   └──────────────────┘   └──────────────────┘
+              │  (CDN origin)     │   │  ✓ provisioned  │   │  second LXC       │
+              └───────────────────┘   │  Caddy·LAN-only │   └──────────────────┘
+                                      └──────────────────┘
    "if the current infrastructure is down, the service stays up somewhere else"
 ```
 
