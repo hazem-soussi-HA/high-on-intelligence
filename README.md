@@ -9,6 +9,14 @@ A free, curated, dependency-free portal into the best learning resources of the 
 - **Site:** https://hazem-soussi-ha.github.io/high-on-intelligence/
 - **Policy:** [LEGITIMACY.md](LEGITIMACY.md) · **Security:** [SECURITY.md](SECURITY.md) · `.well-known/security.txt`
 
+## Services — the workshop inside this repo
+Since 2026-11-14, all of Hazem Soussi's public services ship from this repo under `projects/` (merged via `git subtree`, histories intact). See **[services.html](https://hazem-soussi-ha.github.io/high-on-intelligence/services.html)** — or [projects/](projects/):
+
+- **Nine Room** — premium nine-ball billiards in the browser ([play](https://hazem-soussi-ha.github.io/high-on-intelligence/projects/nine-room/))
+- **Amazon Expedition 3D** — first-person three.js jungle expedition ([open](https://hazem-soussi-ha.github.io/high-on-intelligence/projects/amazon-expedition-3d/))
+- **HAZOOM DJ — TRANSISTOR Studio** — generative techno engine, pure DSP ([enter](https://hazem-soussi-ha.github.io/high-on-intelligence/projects/hazoom-dj-techno/transistor-studio.html))
+- **Lumen Studio** — browser-native 3D engine & editor on WebGL/GL ES ([launch](https://hazem-soussi-ha.github.io/high-on-intelligence/projects/lumen-studio/))
+
 ## What's inside
 - **Library** — 70 verified resources (AI · SWE · Security · Data/Math · Life & Spirit), searchable & filterable
 - **Paths** — 5 ordered journeys: Thinking Machine (AI) · Builder (SWE) · Guardian (Security) · Foundations (Math) · Sovereign (Life/Mind/Health)

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — High on Intelligence | The Thinking Machine's Workshop</title>
+<meta name="description" content="Every public service shipping from High on Intelligence — Nine Room billiards, Amazon Expedition 3D, HAZOOM DJ's TRANSISTOR studio and Lumen Studio, the browser-native 3D engine. All open source, MIT, 100% client-side, no trackers.">
+<meta name="author" content="Hazem Soussi">
+<meta name="theme-color" content="#0b0b14">
+<meta property="og:title" content="Services — High on Intelligence">
+<meta property="og:description" content="The Thinking Machine's workshop: games, engines and living instruments — all open source, all in the browser, all client-side.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="High on Intelligence">
+<meta property="og:url" content="https://hazem-soussi-ha.github.io/high-on-intelligence/services.html">
+<meta property="og:image" content="https://hazem-soussi-ha.github.io/high-on-intelligence/assets/og-image.png">
+<link rel="canonical" href="https://hazem-soussi-ha.github.io/high-on-intelligence/services.html">
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<link rel="alternate" type="application/rss+xml" title="The HOI Dispatch" href="feed.xml">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .svc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.1rem; }
+  .svc-card { display: flex; flex-direction: column; gap: .55rem; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.25rem 1.25rem 1.1rem; backdrop-filter: blur(6px); transition: transform .25s ease, border-color .25s ease; }
+  .svc-card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+  .svc-eyebrow { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: var(--text-dim); display: flex; justify-content: space-between; gap: .5rem; }
+  .svc-title { font-family: var(--font-head); font-size: 1.35rem; line-height: 1.25; }
+  .svc-desc { color: var(--text-dim); font-size: .9rem; flex: 1; }
+  .svc-tags { display: flex; gap: .35rem; flex-wrap: wrap; }
+  .svc-tag { font-family: var(--font-mono); font-size: .65rem; letter-spacing: .08em; color: var(--accent-2); border: 1px solid color-mix(in srgb, var(--accent-2) 40%, transparent); border-radius: 999px; padding: .15rem .55rem; }
+  .svc-actions { display: flex; gap: .5rem; margin-top: .3rem; flex-wrap: wrap; }
+  .svc-foot { font-family: var(--font-mono); font-size: .66rem; color: var(--text-dim); border-top: 1px solid var(--line); padding-top: .6rem; margin-top: .15rem; }
+  .svc-kpis { display: flex; gap: 1.4rem; flex-wrap: wrap; margin: 1rem 0 1.6rem; color: var(--text-dim); font-size: .82rem; }
+  .svc-kpis b { color: var(--text); font-family: var(--font-mono); }
+</style>
+</head>
+<body>
+
+<div class="backdrop" aria-hidden="true"></div>
+
+<!-- ═══════════ TOP BAR ═══════════ -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html" aria-label="High on Intelligence — home">
+      <svg class="brand-mark" viewBox="0 0 64 64" role="img" aria-label="High on Intelligence logo — an eye inside a circuit">
+        <defs>
+          <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#a78bfa"/><stop offset=".5" stop-color="#38bdf8"/><stop offset="1" stop-color="#fbbf24"/>
+          </linearGradient>
+        </defs>
+        <rect x="2" y="2" width="60" height="60" rx="14" fill="#12121f" stroke="url(#g)" stroke-width="2.4"/>
+        <path d="M10 32 Q32 12 54 32 Q32 52 10 32 Z" fill="none" stroke="url(#g)" stroke-width="2.6" stroke-linejoin="round"/>
+        <circle cx="32" cy="32" r="8.5" fill="none" stroke="url(#g)" stroke-width="2.6"/>
+        <circle cx="32" cy="32" r="3" fill="url(#g)"/>
+        <circle cx="8" cy="32" r="1.6" fill="#38bdf8"/><circle cx="56" cy="32" r="1.6" fill="#38bdf8"/>
+        <circle cx="32" cy="6" r="1.6" fill="#a78bfa"/><circle cx="32" cy="58" r="1.6" fill="#a78bfa"/>
+      </svg>
+      <span class="brand-text"><b>HOI</b><small>High on Intelligence · Hazem Soussi</small></span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html#library">Library</a>
+      <a href="index.html#paths">Paths</a>
+      <a href="universe.html">Universe</a>
+      <a href="earth.html">Earth</a>
+      <a href="services.html" aria-current="page">Services</a>
+      <a href="status.html">Status</a>
+    </nav>
+    <div class="top-actions">
+      <button id="themeToggle" class="icon-btn" aria-label="Toggle dark / light theme">
+        <span class="icon-sun">☀</span><span class="icon-moon" style="display:none">☾</span>
+      </button>
+      <button id="navToggle" class="icon-btn nav-toggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ═══════════ SERVICES INTRO ═══════════ -->
+<section class="block" aria-labelledby="svc-title">
+  <div class="section-head">
+    <span class="num">S</span>
+    <h2 id="svc-title">The Workshop — Services</h2>
+    <p>Real software, built in the open, shipped from this very repository. Every service below runs client-side in your browser — no accounts, no trackers, no paywalls. MIT-licensed like the rest of the portal; source lives under <code>projects/</code> in this repo.</p>
+  </div>
+
+  <div class="svc-kpis" aria-label="Service statistics">
+    <span><b>4</b> live services</span>
+    <span><b>1</b> public repository</span>
+    <span><b>100%</b> open source (MIT)</span>
+    <span><b>0</b> trackers · no cookies · no accounts</span>
+  </div>
+
+  <div class="svc-grid">
+
+    <article class="svc-card">
+      <div class="svc-eyebrow"><span>GAME · JS · NINE-BALL</span><span>2025 →</span></div>
+      <h3 class="svc-title">Nine Room</h3>
+      <p class="svc-desc">A premium nine-ball billiards game in the browser — real physics, cue control, a proper HUD and racks under your command. No install, no ads, no mercy.</p>
+      <div class="svc-tags"><span class="svc-tag">Billiards</span><span class="svc-tag">Physics</span><span class="svc-tag">Client-side</span></div>
+      <div class="svc-actions">
+        <a class="btn primary small" href="projects/nine-room/">Play Nine Room →</a>
+        <a class="btn ghost small" href="https://github.com/hazem-soussi-HA/high-on-intelligence/tree/main/projects/nine-room" rel="noopener">Source ↗</a>
+      </div>
+      <div class="svc-foot">projects/nine-room · MIT · vanilla JS</div>
+    </article>
+
+    <article class="svc-card">
+      <div class="svc-eyebrow"><span>3D · THREE.JS · OPEN WORLD</span><span>2026</span></div>
+      <h3 class="svc-title">Amazon Expedition 3D</h3>
+      <p class="svc-desc">A first-person jungle expedition rendered live in your browser — procedural terrain, flight, survival, three.js under the hood. Step off the path at your own risk.</p>
+      <div class="svc-tags"><span class="svc-tag">Three.js</span><span class="svc-tag">Open world</span><span class="svc-tag">WebGL</span></div>
+      <div class="svc-actions">
+        <a class="btn primary small" href="projects/amazon-expedition-3d/">Open Expedition 3D →</a>
+        <a class="btn ghost small" href="https://github.com/hazem-soussi-HA/high-on-intelligence/tree/main/projects/amazon-expedition-3d" rel="noopener">Source ↗</a>
+      </div>
+      <div class="svc-foot">projects/amazon-expedition-3d · MIT · three.js</div>
+    </article>
+
+    <article class="svc-card">
+      <div class="svc-eyebrow"><span>AUDIO · DSP · GENERATIVE</span><span>2026</span></div>
+      <h3 class="svc-title">HAZOOM DJ — TRANSISTOR Studio</h3>
+      <p class="svc-desc">A techno engine that writes the track: every kick, hat, bass line and Am7 voicing is computed from scratch in code. Includes the TRANSISTOR live studio and a rendered demo track.</p>
+      <div class="svc-tags"><span class="svc-tag">Generative</span><span class="svc-tag">DSP</span><span class="svc-tag">Node + Web</span></div>
+      <div class="svc-actions">
+        <a class="btn gold small" href="projects/hazoom-dj-techno/transistor-studio.html">Enter TRANSISTOR →</a>
+        <a class="btn ghost small" href="https://github.com/hazem-soussi-HA/high-on-intelligence/tree/main/projects/hazoom-dj-techno" rel="noopener">Source ↗</a>
+      </div>
+      <div class="svc-foot">projects/hazoom-dj-techno · MIT · pure DSP · audio/hazoom-dj-01.mp3</div>
+    </article>
+
+    <article class="svc-card">
+      <div class="svc-eyebrow"><span>ENGINE · WEBGL · EDITOR</span><span>2026</span></div>
+      <h3 class="svc-title">Lumen Studio</h3>
+      <p class="svc-desc">A browser-native 3D engine and editor written directly on WebGL / OpenGL ES — hand-rolled shaders, PBR materials, WebGL 1 fallback, scene editing live in the page.</p>
+      <div class="svc-tags"><span class="svc-tag">WebGL / GL ES</span><span class="svc-tag">PBR</span><span class="svc-tag">Editor</span></div>
+      <div class="svc-actions">
+        <a class="btn primary small" href="projects/lumen-studio/">Launch Lumen Studio →</a>
+        <a class="btn ghost small" href="https://github.com/hazem-soussi-HA/high-on-intelligence/tree/main/projects/lumen-studio" rel="noopener">Source ↗</a>
+      </div>
+      <div class="svc-foot">projects/lumen-studio · MIT · ES modules · no build step</div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ═══════════ HOW THE WORKSHOP SHIPS ═══════════ -->
+<section class="block" aria-labelledby="svc-how-title">
+  <div class="section-head">
+    <span class="num">S+</span>
+    <h2 id="svc-how-title">How this workshop ships</h2>
+    <p>One repository, one CI, one audit surface. Sub-project histories were merged with <code>git subtree</code>, so their full commit history remains intact under <code>projects/…</code>. The portal's security workflow scans every push for leaked tokens, non-HTTPS resources and broken internal references.</p>
+  </div>
+  <p style="color:var(--text-dim);font-size:.9rem;max-width:60rem">Want one of these services on your own machine or LAN? Everything here is MIT — fork it, self-host it, ship it. The portal's <a href="deploy/nginx.conf">deploy kit</a> (Proxmox LXC + nginx/Caddy + Let&rsquo;s Encrypt) covers self-hosting end-to-end, and <a href="LEGITIMACY.md">Legitimacy &amp; Ethics</a> applies to everything we publish.</p>
+</section>
+
+</main>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <p><b>High on Intelligence</b> · Hazem Soussi — The Thinking Machine · Services · <a href="LEGITIMACY.md">Legitimacy &amp; Ethics</a> · <a href="humans.txt">Humans</a></p>
+  <div class="foot-links">
+    <a href="index.html">Portal</a>·
+    <a href="index.html#library">Library</a>·
+    <a href="index.html#paths">Paths</a>·
+    <a href="universe.html">Universe</a>·<a href="earth.html">Earth</a>·<a href="dispatch.html">Dispatch</a>·<a href="status.html">Status</a>·<a href="radar.html">Skills Radar</a>
+  </div>
+  <p style="max-width:44rem;margin:0 auto">Everything above is free, client-side and open source. Learn well; build wisely; collaborate into the thinking machine.</p>
+</footer>
+
+<script>
+(function () {
+  var t = "dark";
+  try { t = JSON.parse(localStorage.getItem("hoi_theme_v1")) || "dark"; } catch (e) { t = "dark"; }
+  document.documentElement.dataset.theme = t;
+  var sun = document.querySelector(".icon-sun"), moon = document.querySelector(".icon-moon");
+  function sync() {
+    var dark = document.documentElement.dataset.theme === "dark";
+    sun.style.display = dark ? "none" : "inline";
+    moon.style.display = dark ? "inline" : "none";
+  }
+  document.getElementById("themeToggle").addEventListener("click", function () {
+    var next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem("hoi_theme_v1", JSON.stringify(next)); } catch (e) {}
+    sync();
+  });
+  document.getElementById("navToggle").addEventListener("click", function () {
+    document.body.classList.toggle("nav-open");
+  });
+  sync();
+})();
+</script>
+</body>
+</html>
