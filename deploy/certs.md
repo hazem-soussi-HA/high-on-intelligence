@@ -27,9 +27,9 @@ openssl req -x509 -new -nodes -key aethric-root-ca.key -sha256 -days 3650 \
   -subj "/C=TN/O=Aethric/OU=Private CA/CN=Aethric Root CA" -out aethric-root-ca.crt
 # Per-service cert (LAN)
 openssl genrsa -out hoi-lan.key 2048
-openssl req -new -key hoi-lan.key -subj "/C=TN/O=Aethric/CN=pof.lan" -out hoi-lan.csr
+openssl req -new -key hoi-lan.key -subj "/C=TN/O=Aethric/CN=hoi.lan" -out hoi-lan.csr
 openssl x509 -req -in hoi-lan.csr -CA aethric-root-ca.crt -CAkey aethric-root-ca.key \
-  -CAcreateserial -days 825 -sha256 -extensions v3 -extfile <(printf "[v3]\nsubjectAltName=DNS:pof.lan,DNS:pof.aethric.lan") -out hoi-lan.crt
+  -CAcreateserial -days 825 -sha256 -extensions v3 -extfile <(printf "[v3]\nsubjectAltName=DNS:hoi.lan,DNS:hoi.internal.lan") -out hoi-lan.crt
 ```
 Import `aethric-root-ca.crt` into your LAN devices/browsers ("Trusted Root CAs"). Never import a CA key that will ever travel to the internet.
 

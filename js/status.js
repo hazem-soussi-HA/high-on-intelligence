@@ -5,8 +5,7 @@
 
 const ORIGINS = [
   { id: "pages", name: "Origin A — GitHub Pages (Global CDN)", url: "https://hazem-soussi-ha.github.io/high-on-intelligence/", pending: false },
-  { id: "lan",   name: "Origin B — Aethric LAN · 192.168.1.4:8098", url: "http://192.168.1.4:8098/index.html", pending: false, lan: true },
-  { id: "lxc",   name: "Origin C — Proxmox LXC (Aethric)", pending: true, note: "Provision pending — see deploy/failover.md. Intentionally shows PENDING, not UP." }
+  { id: "mirror", name: "Origin B — sovereign mirror (self-hosted, LAN-only)", url: "", pending: false, note: "Green from inside the network; invisible to the public internet by design. No address is published — not for drama, for the same reason you don't publish where your water tower is." }
 ];
 const HISTORY_KEY = "hoi_status_v1";
 const HISTORY_MAX = 60;
@@ -17,7 +16,7 @@ const loadHistory = () => { try { return JSON.parse(localStorage.getItem(HISTORY
 const saveHistory = h => { try { localStorage.setItem(HISTORY_KEY, JSON.stringify(h.slice(-HISTORY_MAX))); } catch {} };
 
 async function checkOrigin(o) {
-  if (o.pending) return { up: null };
+  if (o.pending || !o.url) return { up: null };
   const t0 = performance.now();
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), 6000);
@@ -37,7 +36,7 @@ function renderCard(o, result) {
   card.className = "origin-card";
   card.dataset.id = o.id;
   let stateClass, stateText;
-  if (o.pending) { stateClass = "state-pending"; stateText = "Pending — not provisioned"; }
+  if (!o.url) { stateClass = "state-pending"; stateText = "PRIVATE — by design"; }
   else if (result && result.up === true) { stateClass = "state-up"; stateText = "● UP"; }
   else if (result && result.up === false) { stateClass = "state-down"; stateText = "● DOWN (from this browser)"; }
   else { stateClass = "state-checking"; stateText = "checking…"; }
@@ -45,14 +44,14 @@ function renderCard(o, result) {
   const hist = loadHistory().filter(h => h.origins[o.id] !== undefined);
   const ups = hist.filter(h => h.origins[o.id] === true).length;
   const uptime = hist.length ? Math.round((ups / hist.length) * 100) : null;
-  const ticks = hist.slice(-40).map(h => `<span class="tick ${h.origins[o.id] ? (o.lan ? "lan-ok" : "up") : "down"}" title="${new Date(h.t).toLocaleString()} — ${h.origins[o.id] ? "up" : "down"}"></span>`).join("");
+  const ticks = hist.slice(-40).map(h => `<span class="tick ${h.origins[o.id] ? "up" : "down"}" title="${new Date(h.t).toLocaleString()} — ${h.origins[o.id] ? "up" : "down"}"></span>`).join("");
 
   card.innerHTML = `
-    <div class="origin-head"><span class="dot ${o.pending ? "" : result && result.up === true ? "up" : result && result.up === false ? "down" : ""}"></span><h3>${o.name}</h3></div>
-    ${o.url ? `<div class="origin-url">${o.url}</div>` : `<div class="origin-url">—</div>`}
+    <div class="origin-head"><span class="dot ${!o.url ? "" : result && result.up === true ? "up" : result && result.up === false ? "down" : ""}"></span><h3>${o.name}</h3></div>
+    ${o.url ? `<div class="origin-url">${o.url}</div>` : `<div class="origin-url">unlisted — by design</div>`}
     <div class="origin-state ${stateClass}">${stateText}</div>
-    <div class="latency">${o.pending ? (o.note || "") : result && result.latency != null ? `latency ~${result.latency} ms (this browser)` : "waiting for first check…"}</div>
-    ${!o.pending ? `<div class="history-grid" aria-label="Recent checks">${ticks || '<span class="latency">no history yet — checks just began</span>'}</div>
+    <div class="latency">${!o.url ? (o.note || "") : result && result.latency != null ? `latency ~${result.latency} ms (this browser)` : "waiting for first check…"}</div>
+    ${o.url ? `<div class="history-grid" aria-label="Recent checks">${ticks || '<span class="latency">no history yet — checks just began</span>'}</div>
     <div class="uptime-line">${uptime !== null ? `${uptime}% up across your last ${hist.length} checks` : "collecting samples…"}</div>` : ""}`;
   return card;
 }
