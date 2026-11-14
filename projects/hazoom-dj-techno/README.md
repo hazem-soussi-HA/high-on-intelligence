@@ -8,9 +8,9 @@
 
 # HAZOOM DJ
 
-**A techno engine that writes the track.** Pure DSP in a single Node file — no samples, no
-libraries, no network, no model. Every kick, hat and chord is computed from scratch and rendered
-straight to a WAV.
+**A techno engine that writes the track — and now a healing instrument that soothes it.**
+Pure DSP in a single Node file — no samples, no libraries, no network, no model. Every kick, hat
+and chord is computed from scratch and rendered straight to a WAV.
 
 ```bash
 node dj-intelligence.js --bpm 132 --bars 64 --seed 20260926 --out track.wav
@@ -58,6 +58,31 @@ Measured RMS of a real render, section by section:
 
 **About 24 dB of real dynamic range.** The breakdown is a genuine crater, not a filter sweep.
 
+## Healing mode — lovely techno for the nervous system
+
+The same engine, re-tuned to **A = 432 Hz** with solfeggio intent: no tritones, no minor seconds,
+no aggressive stabs — long sub drones, a heartbeat kick (lub-dub, 60 BPM) and FM singing bowls.
+Resonance is a practice, not a prescription — not medical advice.
+
+```bash
+node dj-intelligence.js --healing --out healing.wav
+node dj-intelligence.js --healing --binaural 6.5 --out healing.wav   # theta binaural Δ6.5 Hz @136.1 Hz
+```
+
+That renders the 16-bar arc **intro(4) → nurture(8) → resolve(4)** (~64 s). Arrangement:
+
+| bar | what happens |
+|---|---|
+| 1–4 | tuning in — A=432, long sub only, bowls breathe in every two bars |
+| 5–12 | nurture — heartbeat kick (beats 1 & 3), I–V–IV–V half-bar sub, bowl every 2 bars |
+| 13–16 | resolve — everything fades to silence over four bars |
+
+Inside `transistor-studio.html` the **healing card** does the same by hand: pick an intent
+(396 restore · 528 calm · 639 open · 963 still), press **✦ compose healing loop**, and the studio
+retunes to 432 Hz, writes a slow major-pentatonic loop into the sequencer and switches to a soft
+patch. Toggles for **bowl bells** (singing-bowl bell every 8 steps), a **binaural θ** pair and a
+**528 Hz undertone**. A box-breath pacer (4·4·4·4) breathes with you.
+
 ---
 
 ## The voices
@@ -73,6 +98,7 @@ Everything is written by hand in `dj-intelligence.js`.
 | **stab** | five detuned saws, filter envelope, 320 Hz → 5.5 kHz sweep |
 | **riser** | noise through a sweeping bandpass, 300 Hz → 14 kHz |
 | **impact** | noise plus a 41 Hz sine, lowpassed with a long decay |
+| **bowl** | FM bell, 2.01 ratio, index decays fast — fundamental lingers (healing mode) |
 | **reverb** | 6 comb filters + 4 allpass, per side |
 | **master** | sidechain duck, sub mono-isation, glue saturation, peak limiter |
 
@@ -85,11 +111,13 @@ curve has the right shape, not because anything is physically modelled.
 ## Options
 
 ```
---bpm     40–240        tempo                        (default 132)
---bars    bars to render                             (default 64)
+--bpm     40–240        tempo                        (default 132; 60 with --healing)
+--bars    bars to render                             (default 64; 16 with --healing)
 --seed    integer       same seed, same track, always
 --out     path          output WAV
---solo    kick|bass|hat|clap|stab|riser|impact|music  render one stem
+--solo    kick|bass|hat|clap|stab|riser|impact|bowl|music  render one stem
+--healing           solfeggio/432 Hz healing arrangement
+--binaural <hz>     add delta-binaural pair (136.1 / 136.1+hz Hz) under the mix
 ```
 
 Stems are how the mix gets measured. The kick and the sub bass overlap in frequency — 44–128 Hz
@@ -116,6 +144,7 @@ build step, no dependencies.
 - LFO routable to pitch, filter or amp
 - 16-step sequencer with per-step note, gate length, BPM and swing
 - oscilloscope, two octaves of keyboard, computer-key play
+- **healing card**: intent select (396/528/639/963), ✦ compose healing loop, bowl bells, binaural θ and 528 Hz undertone toggles, box-breath pacer
 
 Play it: `A W S E D F T G Y H U J K` lower octave, `Q–P` upper, `Z`/`X` transpose, `space` runs the
 sequencer.
@@ -130,6 +159,8 @@ sequencer.
   It does not know what a chord is doing; it knows the shape of a DJ set.
 - No audio recording, no sample management, no MIDI, no project save/load in the studio.
 - The studio is monophonic-per-voice in practice; it does not load the engine's pattern JSON yet.
+- Healing mode removes musical harshness; it cannot guarantee any feeling. Resonance is context,
+  breath and expectation — not serialization.
 
 ---
 

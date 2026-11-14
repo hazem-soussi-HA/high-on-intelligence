@@ -5,6 +5,11 @@
  * pure DSP: no samples, no libraries, no network.
  *
  *   node scripts/dj-intelligence.js --bpm 132 --bars 64 --out ~/Music/hazoom-dj.wav
+ *   node scripts/dj-intelligence.js --healing --out ~/Music/hazoom-dj-healing.wav
+ *
+ * --healing: A=432 solfeggio tuning, heartbeat kick, long sub drone,
+ *            bowl bells (FM), no risers/stabs — slow and consonant.
+ * --binaural <hz>: adds a delta-binaural pair (136.1 / 136.1+hz Hz) under the mix.
  *
  * It also emits the pattern as JSON so a live set can be handed to the
  * Transistor Studio sequencer (apps/tools/transistor-studio.html).
@@ -20,8 +25,10 @@ const path = require('path');
 /* ── args ─────────────────────────────────────────────────────── */
 const argv = process.argv.slice(2);
 const arg = (k, d) => { const i = argv.indexOf('--' + k); return i >= 0 ? argv[i + 1] : d; };
-const BPM      = Number(arg('bpm', 132));
-const BARS     = Number(arg('bars', 64));
+const HEALING  = argv.includes('--healing');
+const BINAURAL = Number(arg('binaural', 0));
+const BPM      = Number(arg('bpm', HEALING ? 60 : 132));
+const BARS     = Number(arg('bars', HEALING ? 16 : 64));
 const OUT      = arg('out', path.join(process.env.HOME || '.', 'hazoom-dj.wav'));
 const SOLO     = arg('solo', '');           // kick | bass | hat | clap | stab | music (all)
 const SR       = 44100;
@@ -262,6 +269,23 @@ function impact(at, vel = 1) {
   }
 }
 
+/* Singing bowl: FM bell with a fast-decaying index — the fundamental lingers.
+   Placed low in the mix with a long send; never competes with the kick. */
+function bowl(at, hz, vel = 0.5) {
+  setVoice('bowl');
+  const i0 = Math.floor(at * SR);
+  const len = Math.floor(6.5 * SR);
+  const modF = hz * 2.01;
+  for (let n = 0; n < len; n++) {
+    const t = n / SR;
+    const modIndex = 5.2 * Math.exp(-t / 0.85) + 0.85;
+    const v = Math.sin(TAU * hz * t + modIndex * Math.sin(TAU * modF * t)) * Math.exp(-t / 2.1) * vel * 0.32;
+    const i = i0 + n; if (i >= TOTAL) break;
+    add(i, v, v);
+    if (soloed('bowl')) { revL[i] += v * 0.6; revR[i] += v * 0.6; }
+  }
+}
+
 /* ── reverb: 4 combs + 2 allpass per side ────────────────────── */
 function reverb(intoL, intoR, outL, outR, decay = 0.78) {
   const combs = [1557, 1617, 1491, 1422, 1277, 1356].map(d => ({ d, i: 0, buf: new Float32Array(d) }));
@@ -286,13 +310,19 @@ function reverb(intoL, intoR, outL, outR, decay = 0.78) {
 }
 
 /* ── arrangement ──────────────────────────────────────────────── */
-const A = 55;                                             // A1
+const A = HEALING ? 54 : 55;                               // A1 @432 Hz when healing (A4=432), else @440
 const N = m => A * Math.pow(2, m / 12);                   // semitone offset
-const CHORD_MIN = [0, 3, 7, 10, 12];                      // Am7 voicing
+const CHORD_MIN = HEALING ? [0, 4, 7, 9] : [0, 3, 7, 10, 12];   // pure major triad + maj6, or Am7 voicing
 // a minor-key bassline motif, in semitones relative to the root
 const MOTIF = [0, 0, 12, 0, 7, 0, 3, 0, 0, 10, 0, 7, 3, 0, 5, 0];
 
+const energyHeal = bar => {
+  if (bar < 4)  return 'intro';
+  if (bar < 12) return 'nurture';
+  return 'resolve';
+};
 const energy = bar => {
+  if (HEALING) return energyHeal(bar);
   if (bar < 8)  return 'intro';
   if (bar < 16) return 'build';
   if (bar < 32) return 'drop';
@@ -311,11 +341,18 @@ for (let bar = 0; bar < BARS; bar++) {
 if (SOLO) console.log(`solo: ${SOLO}`);
 if (SOLO && SOLO !== 'music') console.log(`solo: ${SOLO}`);
 console.log('arrangement:', sections.map(s => `${s.kind}(${s.bars})`).join(' → '));
+if (HEALING) console.log(`healing: A=432 Hz · bpm ${BPM} · bowl bells · heartbeat kick${BINAURAL ? ` · binaural Δ${BINAURAL} Hz @136.1 Hz` : ''}`);
 
 const rootShift = { intro: 0, build: 0, drop: 0, breakdown: -2, drop2: 3, outro: 0 };
 
 /** How many elements are live in a given bar — the arrangement, explicitly. */
 function density(bar) {
+  if (HEALING) {
+    const k = energyHeal(bar);
+    if (k === 'intro')   return { kick: false, hat: false, bass: true, clap: false, stab: false, riser: false };
+    if (k === 'nurture') return { kick: true,  hat: true,  bass: true, clap: false, stab: false, riser: false };
+    return { kick: bar < 14, hat: false, bass: bar < 14, clap: false, stab: false, riser: false };
+  }
   const kind = energy(bar);
   if (kind === 'intro')    return { kick: true,  hat: bar >= 4, bass: bar >= 6, clap: false, stab: false, riser: false };
   if (kind === 'build')    return { kick: true,  hat: true,  bass: true,  clap: bar >= 4, stab: bar >= 6, riser: bar % 4 === 3 };
@@ -330,6 +367,20 @@ function density(bar) {
 for (let bar = 0; bar < BARS; bar++) {
   const kind = energy(bar);
   const t0 = bar * SPBAR;
+  if (HEALING) {
+    const d = density(bar);
+    const prog = [0, 7, 5, 7];                             // I–V–IV–V, one half-bar each
+    if (d.kick) for (const b of [0, 2]) {                  // heartbeat: lub-dub, soft
+      kick(t0 + b * SPB, 0.62);
+      kick(t0 + b * SPB + 0.14, 0.20);
+    }
+    if (d.hat) for (const s of [4, 12]) hat(t0 + s * SPS, false, 0.14);
+    if (d.bass) for (let h = 0; h < 2; h++)
+      bass(t0 + h * SPBAR / 2, SPBAR / 2 * 0.9, N(12 + prog[(bar * 2 + h) % 4]), 0.85);
+    if (bar % 2 === 0) bowl(t0, N(36 + [0, 12, 5, 7][Math.floor(bar / 2) % 4]), bar % 4 === 0 ? 0.52 : 0.40);
+    if (bar % 4 === 2)  bowl(t0 + SPBAR * 0.75, N(48 + [0, 4, 7][Math.floor(bar / 4) % 3]), 0.28);
+    continue;
+  }
   const shift = rootShift[kind] || 0;
   const full  = kind === 'drop' || kind === 'drop2';
   const brk   = kind === 'breakdown';
@@ -374,6 +425,12 @@ for (let bar = 0; bar < BARS; bar++) {
  * and the limiter squares off the difference.
  */
 function sectionGain(bar) {
+  if (HEALING) {
+    const k = energyHeal(bar);
+    if (k === 'intro')   return 0.25 + bar * 0.03;
+    if (k === 'nurture') return 0.60;
+    return Math.max(0.08, 0.36 - Math.max(0, bar - 12) * 0.07);  // resolve fades to silence
+  }
   const kind = energy(bar);
   if (kind === 'intro')     return bar < 4 ? 0.40 : 0.58;
   if (kind === 'build')     return 0.66 + (bar % 8) / 8 * 0.30;
@@ -412,6 +469,15 @@ for (let n = 0; n < TOTAL; n++) {
   env = peak > env ? peak : env * 0.9994;
   const gain = env > 0.89 ? 0.89 / env : 1;
   outL[n] = l * gain; outR[n] = r * gain;
+}
+
+/* delta-binaural layer (theta/delta target), −30 dB, pre-fade */
+if (BINAURAL > 0) {
+  for (let n = 0; n < TOTAL; n++) {
+    const t = n / SR;
+    outL[n] += 0.028 * Math.sin(TAU * 136.1 * t);
+    outR[n] += 0.028 * Math.sin(TAU * (136.1 + BINAURAL) * t);
+  }
 }
 
 /* fade in/out so the file never clicks */
@@ -456,6 +522,11 @@ console.log(`  ${secs.toFixed(1)}s · ${BPM} bpm · ${BARS} bars · ${(buf.lengt
 /* ── hand the pattern to the live sequencer ───────────────────── */
 const steps = [];
 for (let i = 0; i < 16; i++) {
+  if (HEALING) {
+    const on = [0, 4, 7, 9, 12, 14].includes(i);
+    steps.push({ step: i, note: 48 + [0, 4, 7, 9, 12, 14][[0, 4, 7, 9, 12, 14].indexOf(i)], len: 0.75, on });
+    continue;
+  }
   const deg = MOTIF[i] + rootShift.drop2;
   steps.push({ step: i, note: 36 + deg, len: 0.5, on: i % 2 === 0 });
 }
