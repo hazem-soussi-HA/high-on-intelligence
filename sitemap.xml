@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://hazem-soussi-ha.github.io/high-on-intelligence/</loc><priority>1.0</priority></url>
-  <url><loc>https://hazem-soussi-ha.github.io/high-on-intelligence/universe.html</loc><priority>0.8</priority></url>
-  <url><loc>https://hazem-soussi-ha.github.io/high-on-intelligence/status.html</loc><priority>0.6</priority></url>
-  <url><loc>https://hazem-soussi-ha.github.io/high-on-intelligence/dispatch.html</loc><priority>0.7</priority></url>
-  <url><loc>https://hazem-soussi-ha.github.io/high-on-intelligence/radar.html</loc><priority>0.6</priority></url>
-  <url><loc>https://hazem-soussi-ha.github.io/high-on-intelligence/earth.html</loc><priority>0.8</priority></url>
-  <url><loc>https://hazem-soussi-ha.github.io/high-on-intelligence/services.html</loc><priority>0.8</priority></url>
+  <url><loc>https://hazem-soussi-ha.github.io/high-on-intelligence/universe</loc><priority>0.8</priority></url>
+  <url><loc>https://hazem-soussi-ha.github.io/high-on-intelligence/status</loc><priority>0.6</priority></url>
+  <url><loc>https://hazem-soussi-ha.github.io/high-on-intelligence/dispatch</loc><priority>0.7</priority></url>
+  <url><loc>https://hazem-soussi-ha.github.io/high-on-intelligence/radar</loc><priority>0.6</priority></url>
+  <url><loc>https://hazem-soussi-ha.github.io/high-on-intelligence/earth</loc><priority>0.8</priority></url>
+  <url><loc>https://hazem-soussi-ha.github.io/high-on-intelligence/services</loc><priority>0.8</priority></url>
 </urlset>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aethric Status — Somewhere, Anywhere, Always | High on Intelligence</title>
-<meta name="description" content="Live health of the High on Intelligence origins — GitHub Pages CDN, the Aethric LAN mirror, and the pending Proxmox LXC. Real browser-side checks, stored on your device. No trackers, no lies.">
+<meta name="description" content="Live health of the High on Intelligence origins — GitHub Pages CDN and a sovereign self-hosted mirror (LAN-only, unlisted). Real browser-side checks, stored on your device. No trackers, no lies.">
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
 <link rel="stylesheet" href="css/style.css">
@@ -31,7 +31,7 @@
 <div class="backdrop" aria-hidden="true"></div>
 <header class="topbar">
   <div class="topbar-inner">
-    <a class="brand" href="index.html" aria-label="High on Intelligence — home">
+    <a class="brand" href="index" aria-label="High on Intelligence — home">
       <svg class="brand-mark" viewBox="0 0 64 64" role="img" aria-label="High on Intelligence logo">
         <defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a78bfa"/><stop offset=".5" stop-color="#38bdf8"/><stop offset="1" stop-color="#fbbf24"/></linearGradient></defs>
         <rect x="2" y="2" width="60" height="60" rx="14" fill="#12121f" stroke="url(#g3)" stroke-width="2.4"/>
@@ -41,13 +41,13 @@
       <span class="brand-text"><b>HOI</b><small>High on Intelligence · Hazem Soussi</small></span>
     </a>
     <nav class="site-nav" aria-label="Primary">
-      <a href="index.html#library">Library</a>
-      <a href="universe.html">Universe</a>
-      <a href="dispatch.html">Dispatch</a>
-      <a href="radar.html">Skills Radar</a>
-      <a href="index.html#collaborate">Collaborate</a>
+      <a href="index#library">Library</a>
+      <a href="universe">Universe</a>
+      <a href="dispatch">Dispatch</a>
+      <a href="radar">Skills Radar</a>
+      <a href="index#collaborate">Collaborate</a>
     </nav>
-    <div class="top-actions"><a href="index.html" class="btn small ghost">← Portal</a></div>
+    <div class="top-actions"><a href="index" class="btn small ghost">← Portal</a></div>
   </div>
 </header>
 
@@ -67,13 +67,13 @@
   </div>
   <div class="status-grid" id="originGrid"></div>
   <div class="note-box">
-    <strong>How to read this honestly:</strong> "GitHub Pages CDN" is global and public. The "Aethric LAN" card answers true from inside your network, but public browsers see it through GitHub's house rules (mixed content over HTTPS), so it may read DOWN from the internet — that's expected, not a failure. The Proxmox LXC origin stays honestly <strong>PENDING</strong> until provisioned — we don't ship green lights we didn't earn. History is stored on this device only; nothing is reported anywhere. See <a href="https://github.com/hazem-soussi-HA/high-on-intelligence/blob/main/deploy/failover.md">failover.md</a> and <a href="LEGITIMACY.md">LEGITIMACY.md</a>.
+    <strong>How to read this honestly:</strong> "GitHub Pages CDN" is global and public. The mirror card stays intentionally <strong>PRIVATE</strong> — public browsers get nothing, because that origin answers only inside our network. We don't ship green lights we didn't earn, and we don't publish where the mirror lives. History is stored on this device only; nothing is reported anywhere. See <a href="https://github.com/hazem-soussi-HA/high-on-intelligence/blob/main/deploy/failover.md">failover.md</a> and <a href="LEGITIMACY.md">LEGITIMACY.md</a>.
   </div>
 </section>
 </main>
 
 <footer>
-  <p><b>Aethric Status</b> · part of <a href="index.html">High on Intelligence</a> · <span id="year"></span></p>
+  <p><b>Aethric Status</b> · part of <a href="./">High on Intelligence</a> · <span id="year"></span></p>
 </footer>
 
 <script src="js/status.js"></script>

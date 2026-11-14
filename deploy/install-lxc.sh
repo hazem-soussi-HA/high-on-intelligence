@@ -24,7 +24,12 @@ cat > /etc/caddy/Caddyfile <<'EOF'
 hoi.hazem.example.com {
     root * /var/www/hoi.hazem
     encode zstd gzip
-    file_server
+    route {
+        try_files {path} {path}.html {path}/index.html
+        file_server {
+            hide .git
+        }
+    }
     header {
         X-Content-Type-Options nosniff
         X-Frame-Options SAMEORIGIN

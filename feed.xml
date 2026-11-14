@@ -3,30 +3,30 @@
   <channel>
     <title>The HOI Dispatch — High on Intelligence</title>
     <description>Notes from the frontier: launches, universes, Aethric architecture — from Hazem Soussi's High on Intelligence.</description>
-    <link>https://hazem-soussi-ha.github.io/high-on-intelligence/dispatch.html</link>
+    <link>https://hazem-soussi-ha.github.io/high-on-intelligence/dispatch</link>
     <atom:link href="https://hazem-soussi-ha.github.io/high-on-intelligence/feed.xml" rel="self" type="application/rss+xml"/>
     <language>en</language>
     <managingEditor>Hazem Soussi</managingEditor>
     <item>
       <title>High on Intelligence is live</title>
-      <link>https://hazem-soussi-ha.github.io/high-on-intelligence/dispatch.html#hoi-live</link>
-      <guid isPermaLink="true">https://hazem-soussi-ha.github.io/high-on-intelligence/dispatch.html#hoi-live</guid>
+      <link>https://hazem-soussi-ha.github.io/high-on-intelligence/dispatch#hoi-live</link>
+      <guid isPermaLink="true">https://hazem-soussi-ha.github.io/high-on-intelligence/dispatch#hoi-live</guid>
       <pubDate>Fri, 13 Nov 2026 09:00:00 GMT</pubDate>
       <description>After weeks of stubbornness, High on Intelligence — Hazem Soussi's free, curated gateway into the technologies, information and data of this age — is public. 70 verified resources, five guided tracks, an on-device assistant, a written legitimacy policy.</description>
     </item>
     <item>
       <title>The Universe Wing — a starfield built on Claude Opus</title>
-      <link>https://hazem-soussi-ha.github.io/high-on-intelligence/dispatch.html#universe-wing</link>
-      <guid isPermaLink="true">https://hazem-soussi-ha.github.io/high-on-intelligence/dispatch.html#universe-wing</guid>
+      <link>https://hazem-soussi-ha.github.io/high-on-intelligence/dispatch#universe-wing</link>
+      <guid isPermaLink="true">https://hazem-soussi-ha.github.io/high-on-intelligence/dispatch#universe-wing</guid>
       <pubDate>Fri, 13 Nov 2026 15:30:00 GMT</pubDate>
       <description>A real-time 3D starfield of 36 cataloged bright stars (J2000 coordinates) rendered with vendored three.js — plus HOI's six disciplines with the upgraded Claude Opus family: extended thinking, tool use, MCP, prompt contracts, evals, sovereign deployment.</description>
     </item>
     <item>
       <title>Aethric: why a portal should survive its own death</title>
-      <link>https://hazem-soussi-ha.github.io/high-on-intelligence/dispatch.html#aethric</link>
-      <guid isPermaLink="true">https://hazem-soussi-ha.github.io/high-on-intelligence/dispatch.html#aethric</guid>
+      <link>https://hazem-soussi-ha.github.io/high-on-intelligence/dispatch#aethric</link>
+      <guid isPermaLink="true">https://hazem-soussi-ha.github.io/high-on-intelligence/dispatch#aethric</guid>
       <pubDate>Fri, 13 Nov 2026 16:30:00 GMT</pubDate>
-      <description>GitHub Pages CDN live today, Aethric LAN mirror, Proxmox LXC origin pending — one static artifact, in git, pulled everywhere. Let's Encrypt for the public, our own CA strictly inside the LAN, and a status page that refuses to show green it didn't earn.</description>
+      <description>GitHub Pages CDN live today and a sovereign self-hosted mirror behind it — one static artifact, in git, pulled everywhere. A public certificate for the public, a private CA strictly inside the LAN, and a status page that refuses to show green it didn't earn.</description>
     </item>
   </channel>
 </rss>

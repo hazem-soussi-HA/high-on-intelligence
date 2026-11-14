@@ -10,11 +10,11 @@ A free, curated, dependency-free portal into the best learning resources of the 
 - **Policy:** [LEGITIMACY.md](LEGITIMACY.md) · **Security:** [SECURITY.md](SECURITY.md) · `.well-known/security.txt`
 
 ## Services — the workshop inside this repo
-Since 2026-11-14, all of Hazem Soussi's public services ship from this repo under `projects/` (merged via `git subtree`, histories intact). See **[services.html](https://hazem-soussi-ha.github.io/high-on-intelligence/services.html)** — or [projects/](projects/):
+Since 2026-11-14, all of Hazem Soussi's public services ship from this repo under `projects/` (merged via `git subtree`, histories intact). See **[services.html](https://hazem-soussi-ha.github.io/high-on-intelligence/services)** — or [projects/](projects/):
 
 - **Nine Room** — premium nine-ball billiards in the browser ([play](https://hazem-soussi-ha.github.io/high-on-intelligence/projects/nine-room/))
 - **Amazon Expedition 3D** — first-person three.js jungle expedition ([open](https://hazem-soussi-ha.github.io/high-on-intelligence/projects/amazon-expedition-3d/))
-- **HAZOOM DJ — TRANSISTOR Studio** — generative techno engine, pure DSP ([enter](https://hazem-soussi-ha.github.io/high-on-intelligence/projects/hazoom-dj-techno/transistor-studio.html))
+- **HAZOOM DJ — TRANSISTOR Studio** — generative techno engine, pure DSP ([enter](https://hazem-soussi-ha.github.io/high-on-intelligence/projects/hazoom-dj-techno/transistor-studio))
 - **Lumen Studio** — browser-native 3D engine & editor on WebGL/GL ES ([launch](https://hazem-soussi-ha.github.io/high-on-intelligence/projects/lumen-studio/))
 
 ## What's inside
@@ -23,7 +23,7 @@ Since 2026-11-14, all of Hazem Soussi's public services ship from this repo unde
 - **Assistant** — on-device TF-IDF retrieval (no cloud, no keys) answering from the portal itself
 - **Quiz** (auto-graded) · **Pomodoro timer** · **box breathing** · **collaboration manifest** generator
 - Progress tracked locally in `localStorage` — nothing ever leaves your device
-- **Aethric deployment kit** (`deploy/`) — Proxmox LXC + Caddy/nginx, Let's Encrypt vs private CA, GitHub Pages CDN failover
+- **Aethric deployment kit** (`deploy/`) — sovereign LXC + Caddy/nginx, Let's Encrypt vs private CA, GitHub Pages CDN failover
 
 ## Run locally
 ```bash
