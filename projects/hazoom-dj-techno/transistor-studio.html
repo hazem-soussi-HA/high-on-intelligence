@@ -459,7 +459,7 @@ function runStep(i){
   const s = P.seq[i];
   if (P.bells && i % 8 === 0) {
     const intent = INTENTS[P.intent] || INTENTS.calm;
-    bowl(intent.root + 24, 0.65);
+    bowl(intent.root + 12, 0.65);
   }
   if (!s || !s.on) return;
   const id = noteOn(s.note, 0.72);
@@ -686,7 +686,7 @@ const INTENTS = {
 function bowl(note, vel = 0.8) {
   initAudio(); if (ctx.state === 'suspended') ctx.resume();
   const t = ctx.currentTime, id = ++voiceCounter;
-  const f = nf(note) * 2;                              // bells an octave up
+  const f = nf(note);                                 // the bowl sounds at its own register — low and warm
   const car = ctx.createOscillator(); car.type = 'sine'; car.frequency.value = f;
   const mod = ctx.createOscillator(); mod.type = 'sine'; mod.frequency.value = f * 2.01;
   const modG = ctx.createGain();
@@ -831,6 +831,10 @@ document.getElementById('help').onclick = () => alert(
   '  Q 2 W 3 E R 5 T 6 Y 7 U     upper octave\n' +
   '  Z / X   octave down / up\n' +
   '  SPACE   sequencer play / stop\n\n' +
+  'HEALING\n' +
+  '  intent 396 / 528 / 639 / 963 Hz -> ✦ compose healing loop\n' +
+  '  bowl bells every 8 steps · binaural θ · 528 Hz undertone\n' +
+  '  A=432 Hz is the default pitch — TUNE restores 440\n\n' +
   'Drag knobs vertically. Double-click a knob to reset.\n' +
   'Drag the ADSR bars to shape envelopes.\n' +
   'Click sequencer steps to toggle, shift-click for note, alt-click for length.');
