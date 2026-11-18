@@ -1,4 +1,5 @@
-Contact: mailto:hazem-soussi-ha@users.noreply.github.com
+Contact: mailto:hazem.soussi@gmail.com
+Contact: https://wa.me/21698454001
 Contact: https://github.com/hazem-soussi-HA/high-on-intelligence
 Expires: 2027-11-13T00:00:00.000Z
 Preferred-Languages: en, ar, fr
