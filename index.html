@@ -28,6 +28,9 @@
 <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
 <link rel="alternate" type="application/rss+xml" title="The HOI Dispatch" href="feed.xml">
 <link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Hazem Soussi","jobTitle":"Builder — AI, software and sovereign infrastructure","url":"https://hazem-soussi-ha.github.io/high-on-intelligence/","email":"hazem.soussi@gmail.com","sameAs":["https://github.com/hazem-soussi-HA"],"description":"Founder and curator of High on Intelligence — the free, sovereign portal into the technologies, information and data of the modern age."}
+</script>
 </head>
 <body>
 
@@ -338,12 +341,44 @@
       <a class="btn ghost" href="https://twitter.com/intent/tweet?text=High%20on%20Intelligence%20%E2%80%94%20a%20free%20curated%20portal%20into%20the%20technologies%2C%20information%20and%20data%20of%20the%20modern%20age%20%E2%80%94%20with%20the%20spiritual%20way%20made%20explicit.&amp;url=https%3A%2F%2Fhazem-soussi-ha.github.io%2Fhigh-on-intelligence%2F" target="_blank" rel="noopener noreferrer">Post on X</a>
       <a class="btn ghost" href="https://wa.me/?text=High%20on%20Intelligence%20%E2%80%94%20hazem-soussi-ha.github.io%2Fhigh-on-intelligence%2F" target="_blank" rel="noopener noreferrer">WhatsApp</a>
       <a class="btn ghost" href="mailto:?subject=High%20on%20Intelligence&amp;body=Check%20this%20out%3A%20https%3A%2F%2Fhazem-soussi-ha.github.io%2Fhigh-on-intelligence%2F">Email it</a>
-      <p class="muted" style="font-size:.82rem;margin-top:.6rem">Want to reach Hazem directly? <a href="https://github.com/hazem-soussi-HA" target="_blank" rel="noopener noreferrer">github.com/hazem-soussi-HA</a> or <a href="https://github.com/hazem-soussi-HA/high-on-intelligence/issues" target="_blank" rel="noopener noreferrer">open an issue</a>.</p>
+      <p class="muted" style="font-size:.82rem;margin-top:.6rem">Want to reach Hazem? <a href="CONTACT.md">Official channels &amp; safe-contact protocol →</a> — the only two doors: <strong>hazem.soussi@gmail.com</strong> and <strong>WhatsApp +216 98 454 001</strong>.</p>
     </div>
     <figure class="qr-figure">
       <img src="assets/hoi-qr.svg" alt="QR code linking to High on Intelligence" width="180" height="180">
       <figcaption>Scan with any phone —<br>you land on the portal.</figcaption>
     </figure>
+  </div>
+</section>
+
+<section class="block" id="official" aria-labelledby="official-title">
+  <div class="section-head">
+    <span class="num">09</span>
+    <h2 id="official-title">Official Channels — Reach Me Safely</h2>
+    <p>Two doors. One mailbox. Zero middlemen. Read the protocol — it exists to protect you, not me.</p>
+  </div>
+  <div class="channels-grid">
+    <div class="channel-card">
+      <span class="channel-icon">✉️</span>
+      <h3>Email — the one inbox</h3>
+      <p class="channel-addr channel-obf" data-addr="moc.liamg@issuos.mezah" aria-label="Email address">hazem &middot; soussi [at] gmail [dot] com</p>
+      <button id="revealEmail" class="btn primary small">Reveal address</button>
+      <a id="emailLink" class="btn ghost small" href="#" hidden>Open in mail app →</a>
+      <p class="channel-note">Include your manifest + GitHub handle — that's the handshake.</p>
+    </div>
+    <div class="channel-card">
+      <span class="channel-icon">💬</span>
+      <h3>WhatsApp — the door of starters</h3>
+      <a class="channel-addr" href="https://wa.me/21698454001" target="_blank" rel="noopener noreferrer">+216 98 454 001</a>
+      <a class="btn primary small" href="https://wa.me/21698454001" target="_blank" rel="noopener noreferrer">Message on WhatsApp →</a>
+      <p class="channel-note">One-way door to open. Attach your manifest text + your GitHub handle for the fastest genuine reply.</p>
+    </div>
+    <div class="channel-card channel-card-verify">
+      <span class="channel-icon">🛡️</span>
+      <h3>Verify it's really me</h3>
+      <p style="font-size:.84rem;color:var(--text-dim)">HOI will <strong>never</strong> ask you for credentials, payments, crypto or seed phrases — and never DMs you first. Hazem only writes from <strong>hazem.soussi@gmail.com</strong> and links only to <strong>github.com/hazem-soussi-HA</strong>.</p>
+      <p style="font-size:.84rem;color:var(--text-dim)">Doubt anything? Don't reply. <a href="https://github.com/hazem-soussi-HA/high-on-intelligence/issues" target="_blank" rel="noopener noreferrer">Check the public record on GitHub →</a></p>
+      <p class="channel-note">Full protocol: <a href="CONTACT.md">CONTACT.md</a></p>
+    </div>
   </div>
 </section>
 
@@ -359,7 +394,7 @@
 
 <!-- ═══════════ FOOTER ═══════════ -->
 <footer>
-  <p><b>High on Intelligence</b> · Hazem Soussi — The Thinking Machine · <span id="year"></span> · <a href="LEGITIMACY.md">Legitimacy &amp; Ethics</a> · <a href="humans.txt">Humans</a></p>
+  <p><b>High on Intelligence</b> · Hazem Soussi — The Thinking Machine · <span id="year"></span> · <a href="LEGITIMACY.md">Legitimacy &amp; Ethics</a> · <a href="CONTACT.md">Official Channels</a> · <a href="humans.txt">Humans</a></p>
   <div class="foot-links">
     <a href="#library">Library</a>·
     <a href="#paths">Paths</a>·
@@ -382,6 +417,22 @@
 </div>
 
 <script src="js/i18n.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("revealEmail");
+  const addr = document.querySelector(".channel-obf");
+  const link = document.getElementById("emailLink");
+  if (btn && addr && link) btn.addEventListener("click", () => {
+    const real = addr.dataset.addr.split("").reverse().join("");
+    addr.textContent = real;
+    addr.classList.remove("channel-obf");
+    link.href = "mailto:" + real + "?subject=High%20on%20Intelligence";
+    link.hidden = false;
+    btn.textContent = "Address revealed ✓";
+    btn.disabled = true;
+  });
+});
+</script>
 <script src="js/data.js"></script>
 <script src="js/assistant.js"></script>
 <script src="js/app.js"></script>
